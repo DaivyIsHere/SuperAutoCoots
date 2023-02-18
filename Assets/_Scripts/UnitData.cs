@@ -13,6 +13,10 @@ public class UnitData : ScriptableObject
     //*Size
     public float size = 1f;
     [Space]
+    //* Attack
+    public float dashVelocity = 10f;//magnitude
+    public float dashDuraing = 0.5f;
+    [Space]
     //* Speed
     public float maxSpeed = 10f;//magnitude
     public float acceleration = 10f;
@@ -24,8 +28,8 @@ public class UnitData : ScriptableObject
     public float targetUpdateInterval = 0.5f;
     [Space]
     //* Knockback
-    [Range(0f,1f)] public float knockBackResis = 0.6f;
+    public float knockBackForce = 5f;
+    [Range(0f,1f)] public float knockBackResis = 0f;
     // public float knockBackUpThrow = 5f;
-    // public float knockBackForce = 5f;
     // public Vector2 knockBackVector;
 }

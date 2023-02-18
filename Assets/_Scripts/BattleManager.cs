@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
+using System;
 
 public class BattleManager : Singleton<BattleManager>
 {
+    [Header("Turn info")]
+    public bool isRunning = false;
     public BattleSide currentSide = BattleSide.Left;
+    public event Action<BattleSide> OnTurnChange;
 
     public UnitController currentLeftUnit;
     public UnitController currentRightUnit;
@@ -32,7 +37,7 @@ public class BattleManager : Singleton<BattleManager>
     public TMP_Text leftHealth;
     public TMP_Text rightAttack;
     public TMP_Text rightHealth;
-    
+
 
     void Start()
     {
@@ -60,12 +65,12 @@ public class BattleManager : Singleton<BattleManager>
         currentLeftUnit.currentOpponent = currentRightUnit;
         currentRightUnit.currentOpponent = currentLeftUnit;
 
-        
+
     }
 
     void Update()
     {
-        if(!currentLeftUnit || !currentRightUnit)
+        if (!currentLeftUnit || !currentRightUnit)
             return;
 
         leftHealth.text = currentLeftUnit.currentHealth.ToString();
@@ -80,16 +85,28 @@ public class BattleManager : Singleton<BattleManager>
         return unitIDCounter;
     }
 
-    public void EndTurn()
+    public void StartBattle()
     {
-        StartCoroutine(SwapTurn());
+        isRunning = true;
+        OnTurnChange?.Invoke(BattleSide.Left);
     }
 
-    private IEnumerator SwapTurn()
+    public void ChangeTurn()
     {
-        yield return new WaitForEndOfFrame();
         currentSide = currentSide.Opposite();
+        OnTurnChange?.Invoke(currentSide);
     }
+
+    // public void EndTurn()
+    // {
+    //     StartCoroutine(SwapTurn());
+    // }
+
+    // private IEnumerator SwapTurn()
+    // {
+    //     yield return new WaitForEndOfFrame();
+    //     currentSide = currentSide.Opposite();
+    // }
 }
 
 public enum BattleSide
