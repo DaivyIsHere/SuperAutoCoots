@@ -24,7 +24,7 @@ public class UnitController : MonoBehaviour
 
     [Header("Phsyics")]
     public LayerMask groundLayer;
-    public float groundY = 0f;
+    //public float groundY = 0f;
     //public float lastAirHeight = 0f;
 
     public bool lastFrameGrounded = true;
@@ -34,11 +34,9 @@ public class UnitController : MonoBehaviour
     //info
     public int unitID;
     public BattleSide side;
-    public UnitController currentOpponent;
     public List<UnitController> ignoreTargets;//have done dmg to which unit in the same turn
     //stats
     public int facing = 1;
-    public int currentHealth;
     // public float invinciTimeCD = 0f;
     // public float defualtInvincTime = 0.5f;
 
@@ -64,11 +62,17 @@ public class UnitController : MonoBehaviour
             if (stateManager.currentState != null)
             {
                 stateManager.currentState.OnLanded(stateManager);
-                print("Land");
+                //print("Land");
             }
         }
         lastFrameGrounded = IsGrounded();
         //CalculateLastAirHeight();    
+    }
+
+    void OnDestroy() 
+    {
+        if(BattleManager.instance)
+            BattleManager.instance.OnTurnChange -= OnTurnChange;
     }
 
     public void IniUnitData(UnitData originalUnitData)
@@ -77,7 +81,7 @@ public class UnitController : MonoBehaviour
         unitData = Instantiate(this.originalUnitData);
 
         //Apply stats
-        currentHealth = unitData.maxhealth;
+        unitData.currentHealth = unitData.maxhealth;
         transform.localScale = Vector3.one * unitData.size;
     }
 
@@ -105,8 +109,10 @@ public class UnitController : MonoBehaviour
 
     public void PerformAttack()
     {
-        Vector2 positionDiff = (currentOpponent.transform.position - transform.position).normalized;//new Vector2(currentOpponent.transform.position.x - transform.position.x, 0).normalized;
-        rb2d.velocity = new Vector2(positionDiff.x, 0) * unitData.dashVelocity;
+        if(!BattleManager.instance.GetOpponentUnit(side))
+            return;
+        Vector2 positionDiff = (BattleManager.instance.GetOpponentUnit(side).transform.position - transform.position).normalized;//new Vector2(currentOpponent.transform.position.x - transform.position.x, 0).normalized;
+        rb2d.velocity = new Vector2(positionDiff.x, 0) * unitData.attackVelocity;
     }
 
     #endregion
@@ -155,8 +161,14 @@ public class UnitController : MonoBehaviour
 
     public void TakeDamage(UnitController attacker, int damage)
     {
-        currentHealth -= damage;
+        unitData.currentHealth -= damage;
         ValuePopupManager.instance.NewValuePopup(transform.position, transform, damage);
+
+        if (unitData.currentHealth <= 0)
+        {
+            //Die
+            BattleManager.instance.UnitDefeated(this);
+        }
     }
 
     public void ReceiveKnockback(UnitController attacker, Vector2 knockbackVector)

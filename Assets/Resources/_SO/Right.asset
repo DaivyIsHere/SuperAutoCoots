@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2f7ef5ade4da24cae50bb5eaaa42df, type: 3}
   m_Name: Right
   m_EditorClassIdentifier: 
-  attack: 1
+  attack: 3
   maxhealth: 5
   size: 1
-  maxSpeed: 10
-  acceleration: 10
-  recoverTime: 0.3
-  targetUpdateInterval: 0.5
+  attackVelocity: 10
+  attackDuraing: 0.5
   knockBackResis: 0.6
