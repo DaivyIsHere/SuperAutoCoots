@@ -29,4 +29,9 @@ public class IdleState : State
     {
         stateManager.SwitchState(stateManager.parryState);
     }
+
+    public override void OnLanded(StateManager stateManager)
+    {
+        
+    }
 }

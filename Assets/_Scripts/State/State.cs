@@ -13,4 +13,6 @@ public abstract class State
     public abstract void OnAttackReady(StateManager stateManager);
 
     public abstract void OnTakeHit(StateManager stateManager);
+
+    public abstract void OnLanded(StateManager stateManager);
 }

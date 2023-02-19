@@ -320,9 +320,13 @@ MonoBehaviour:
   debugText: {fileID: 4329520391847851280}
   turnIndicator: {fileID: 3061439495858726346}
   unitData: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
   unitID: 0
   side: 0
   currentOpponent: {fileID: 0}
+  ignoreTargets: []
   facing: 1
   currentHealth: 0
 --- !u!114 &8335522469015794193

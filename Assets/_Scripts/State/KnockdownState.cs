@@ -28,4 +28,9 @@ public class KnockdownState : State
     {
         
     }
+
+    public override void OnLanded(StateManager stateManager)
+    {
+        
+    }
 }

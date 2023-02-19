@@ -29,7 +29,7 @@ public class ValuePopup : MonoBehaviour
         sequence.Join(textDisplay.DOFade(1f, 0.3f));
         sequence.AppendInterval(1.5f);
         sequence.Append(textDisplay.transform.DORotate(new Vector3(0, 0, 20f), 0.3f));
-        sequence.Join(textDisplay.DOFade(0f, 0.3f)).OnComplete(() => Destroy(gameObject));
+        sequence.Join(textDisplay.DOFade(0f, moveDuration)).OnComplete(() => Destroy(gameObject));
 
         //textDisplay.DOFade(0,1f);
         //textDisplay.transform.DOLocalMoveY(0.5f, 1f).OnComplete(() => Destroy(gameObject)).SetLink(gameObject);
@@ -40,7 +40,7 @@ public class ValuePopup : MonoBehaviour
         var sequence = DOTween.Sequence();
         sequence.Append(textDisplay.transform.DOPunchScale(punchScale, punchDuration, punchVibrato, punchElast));
         sequence.Join(textDisplay.transform.DOLocalMoveY(endPosY, moveDuration).SetEase(Ease.OutQuint));
-        sequence.Join(textDisplay.DOFade(0,0.3f).SetEase(Ease.InQuint));
+        sequence.Join(textDisplay.DOFade(0,moveDuration).SetEase(Ease.InQuint));
         sequence.OnComplete(() => SelfDestroy());
     }
 

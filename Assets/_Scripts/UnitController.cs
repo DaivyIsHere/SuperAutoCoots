@@ -22,11 +22,20 @@ public class UnitController : MonoBehaviour
     private UnitData originalUnitData;
     public UnitData unitData;
 
+    [Header("Phsyics")]
+    public LayerMask groundLayer;
+    public float groundY = 0f;
+    //public float lastAirHeight = 0f;
+
+    public bool lastFrameGrounded = true;
+    public float defaultUpThrow = 10f;
+
     [Header("Dynamic Stats")]
     //info
     public int unitID;
     public BattleSide side;
     public UnitController currentOpponent;
+    public List<UnitController> ignoreTargets;//have done dmg to which unit in the same turn
     //stats
     public int facing = 1;
     public int currentHealth;
@@ -48,6 +57,20 @@ public class UnitController : MonoBehaviour
         debugText.text = stateManager.GetCurrentStateName();
     }
 
+    void FixedUpdate()
+    {
+        if (IsGrounded() && (lastFrameGrounded == false))
+        {
+            if (stateManager.currentState != null)
+            {
+                stateManager.currentState.OnLanded(stateManager);
+                print("Land");
+            }
+        }
+        lastFrameGrounded = IsGrounded();
+        //CalculateLastAirHeight();    
+    }
+
     public void IniUnitData(UnitData originalUnitData)
     {
         this.originalUnitData = originalUnitData;
@@ -64,13 +87,18 @@ public class UnitController : MonoBehaviour
 
         if (!IsOwnTurn())
         {
-
+            ignoreTargets.Clear();
         }
         else
         {
             //Invoke attack ready on turn start
             stateManager.currentState.OnAttackReady(stateManager);
         }
+    }
+
+    private bool IsOwnTurn()
+    {
+        return side == BattleManager.instance.currentSide;
     }
 
     #region StateAction
@@ -123,6 +151,14 @@ public class UnitController : MonoBehaviour
     //     }
     // }
 
+    #region ReceiveInteraction
+
+    public void TakeDamage(UnitController attacker, int damage)
+    {
+        currentHealth -= damage;
+        ValuePopupManager.instance.NewValuePopup(transform.position, transform, damage);
+    }
+
     public void ReceiveKnockback(UnitController attacker, Vector2 knockbackVector)
     {
         // if (invinciTimeCD > 0)
@@ -133,38 +169,108 @@ public class UnitController : MonoBehaviour
         stateManager.currentState.OnTakeHit(stateManager);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    #endregion
+
+    #region SendInteraction
+
+    private void DamageTarget(UnitController target)
     {
-        //hit opponent
-        if (other.gameObject.GetComponent<UnitController>()?.side == side.Opposite())
+        target.TakeDamage(this, unitData.attack);
+    }
+
+    private void KnockBackTarget(UnitController target)
+    {
+        float velocityX = rb2d.velocity.x;
+        if (velocityX > 0)
+            velocityX = Mathf.Clamp(velocityX, 5f, 20f);
+        else
+            velocityX = Mathf.Clamp(velocityX, -20f, -5f);
+        Vector2 knockbackVector = new Vector2(velocityX * 1f, 0);
+        knockbackVector.y = defaultUpThrow;//defualt upthrow
+        target.ReceiveKnockback(this, knockbackVector);
+    }
+
+    private bool NotInIgnoreList(UnitController unit)
+    {
+        foreach (var u in ignoreTargets)
         {
-            if (IsOwnTurn())
+            if (unit == u)
+                return false;
+        }
+        return true;
+    }
+
+    #endregion 
+
+    #region Physic
+
+    private void OnContactOpponent(UnitController otherUnit)
+    {
+        if (IsOwnTurn())
+        {
+            //In attack State
+            if (stateManager.currentState == stateManager.attackState)
             {
-                if (stateManager.currentState == stateManager.attackState)
+                //avaliable target
+                if (NotInIgnoreList(otherUnit))
                 {
-                    ///Perform Knockback
-                    //print(Mathf.Abs(_rb2d.velocity.x));
-                    float velocityX = rb2d.velocity.x;
-                    if (velocityX > 0)
-                        velocityX = Mathf.Clamp(velocityX, 5f, 20f);
-                    else
-                        velocityX = Mathf.Clamp(velocityX, -20f, -5f);
-                    Vector2 knockbackVector = new Vector2(velocityX * 1f, 0);
-                    //knockbackVector *= Mathf.Abs(_rb2d.velocity.x) * 1f;//unitData.knockBackForce;
-                    knockbackVector.y = 10f;//defualt upthrow
-                    other.GetComponent<UnitController>().ReceiveKnockback(this, knockbackVector);
+                    //? Perform Knockback
+                    KnockBackTarget(otherUnit);
+                    //? Deal dmg
+                    DamageTarget(otherUnit);
+
+                    //? Add to ignoreList
+                    ignoreTargets.Add(otherUnit);
                 }
             }
-            else
-            {
-                // We compute all the contact stuffs for ourself during enemy's turn
-            }
+        }
+        else
+        {
+            // We compute all the contact stuffs for ourself during enemy's turn
         }
     }
 
-    private bool IsOwnTurn()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        return side == BattleManager.instance.currentSide;
+        if (other.gameObject.GetComponent<UnitController>())
+        {
+            UnitController otherUnit = other.GetComponent<UnitController>();
+            if (otherUnit.side != side)
+                OnContactOpponent(otherUnit);
+        }
     }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.GetComponent<UnitController>())
+        {
+            UnitController otherUnit = other.GetComponent<UnitController>();
+            if (otherUnit.side != side)
+                OnContactOpponent(otherUnit);
+        }
+    }
+
+    // private void CalculateLastAirHeight()
+    // {
+    //     if(IsGrounded())
+    //     {
+    //         groundY = transform.position.y;
+    //     }
+    //     else
+    //     {
+    //         float airHeight = transform.position.y - groundY;
+    //         if(airHeight > lastAirHeight)
+    //             lastAirHeight = airHeight;
+    //     }
+    // }
+
+    private bool IsGrounded()
+    {
+        if (Physics2D.Raycast(transform.position, Vector2.down, GetComponent<CircleCollider2D>().radius * 1.1f, groundLayer))
+            return true;
+        else
+            return false;
+    }
+
+    #endregion
 }

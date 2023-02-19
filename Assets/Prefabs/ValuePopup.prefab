@@ -46,11 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textDisplay: {fileID: 2170958767441971081}
-  punchScale: {x: 1.5, y: 1.5, z: 1.5}
+  punchScale: {x: 1.2, y: 1.2, z: 1.2}
   punchDuration: 0.5
   punchVibrato: 5
   punchElast: 0.5
-  endPosY: 1.5
+  endPosY: 1
   moveDuration: 1
 --- !u!1 &2170958767441971095
 GameObject:

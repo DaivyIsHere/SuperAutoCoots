@@ -41,4 +41,9 @@ public class AttackState : State
     {
         stateManager.SwitchState(stateManager.parryState);
     }
+
+    public override void OnLanded(StateManager stateManager)
+    {
+        
+    }
 }
