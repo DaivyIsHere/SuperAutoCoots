@@ -18,9 +18,8 @@ public class UnitController : MonoBehaviour
     public TMP_Text debugText;
     public Image turnIndicator;
 
-    [Header("UnitData")]
-    private UnitData originalUnitData;
-    public UnitData unitData;
+    [Header("WeaponData")]
+    public WeaponData weaponData;
 
     [Header("Phsyics")]
     public LayerMask groundLayer;
@@ -28,11 +27,9 @@ public class UnitController : MonoBehaviour
     //public float lastAirHeight = 0f;
 
     public bool lastFrameGrounded = true;
-    public float defaultUpThrow = 10f;
 
     [Header("Dynamic Stats")]
     //info
-    public int unitID;
     public BattleSide side;
     public List<UnitController> ignoreTargets;//have done dmg to which unit in the same turn
     //stats
@@ -69,21 +66,13 @@ public class UnitController : MonoBehaviour
         //CalculateLastAirHeight();    
     }
 
-    void OnDestroy() 
+    void OnDestroy()
     {
-        if(BattleManager.instance)
+        if (BattleManager.instance)
             BattleManager.instance.OnTurnChange -= OnTurnChange;
     }
 
-    public void IniUnitData(UnitData originalUnitData)
-    {
-        this.originalUnitData = originalUnitData;
-        unitData = Instantiate(this.originalUnitData);
-
-        //Apply stats
-        unitData.currentHealth = unitData.maxhealth;
-        transform.localScale = Vector3.one * unitData.size;
-    }
+    #region Turn
 
     private void OnTurnChange(BattleSide currentSide)
     {
@@ -105,79 +94,41 @@ public class UnitController : MonoBehaviour
         return side == BattleManager.instance.currentSide;
     }
 
+    #endregion
+
     #region StateAction
 
-    public void PerformAttack()
-    {
-        if(!BattleManager.instance.GetOpponentUnit(side))
-            return;
-        Vector2 positionDiff = (BattleManager.instance.GetOpponentUnit(side).transform.position - transform.position).normalized;//new Vector2(currentOpponent.transform.position.x - transform.position.x, 0).normalized;
-        rb2d.velocity = new Vector2(positionDiff.x, 0) * unitData.attackVelocity;
-    }
+    // public void PerformAttack()
+    // {
+    //     if (!BattleManager.instance.GetOpponentUnit(side))
+    //         return;
+    //     Vector2 positionDiff = (BattleManager.instance.GetOpponentUnit(side).transform.position - transform.position).normalized;
+    //     rb2d.velocity = new Vector2(positionDiff.x, 0) * weaponData.attackVelocity;
+    // }
 
     #endregion
 
-    // private void OnCollisionEnter2D(Collision2D other)
-    // {
-    //     if (currentOpponent && other.gameObject == currentOpponent.gameObject)
-    //     {
-    //         ///Kockback
-    //         Vector2 knockbackVector = new Vector2(transform.position.x - other.transform.position.x, 0).normalized;
-    //         knockbackVector *= 5f;//kockback force
-    //         knockbackVector.y = 5f;//Kockback Upthrow
-    //         if (IsOwnTurn())
-    //             knockbackVector *= unitData.knockBackResis;
-    //         _rb2d.AddForce(knockbackVector, ForceMode2D.Impulse);
-    //         //_rb2d.AddForce(new Vector2(0, (1f - unitData.knockBackResis) * other.relativeVelocity.magnitude), ForceMode2D.Impulse);
-    //         //_rb2d.AddForce(other.relativeVelocity * (1f - unitData.knockBackResis), ForceMode2D.Impulse);
-
-    //         ///Recover
-    //         isRecovering = true;
-    //         recoverCountDown = unitData.recoverTime;
-
-    //         if (!IsOwnTurn())
-    //         {
-    //             ///resolve Attack
-    //             int damageToTake = other.gameObject.GetComponent<UnitController>().unitData.attack;
-    //             currentHealth -= damageToTake;
-    //             //HealthDislay
-    //             healthDisplay.text = currentHealth.ToString();
-
-    //             //Death
-    //             if (currentHealth <= 0)
-    //                 print("die");
-
-    //             //VP
-    //             ValuePopupManager.instance.NewValuePopup((Vector2)transform.position + new Vector2(0, 1.5f), transform, damageToTake);
-    //         }
-    //         else
-    //         {
-    //             BattleManager.instance.EndTurn();
-    //         }
-    //     }
-    // }
-
     #region ReceiveInteraction
 
-    public void TakeDamage(UnitController attacker, int damage)
+    public void TakeDamage(int damage)
     {
-        unitData.currentHealth -= damage;
+        weaponData.durability -= damage;
         ValuePopupManager.instance.NewValuePopup(transform.position, transform, damage);
 
-        if (unitData.currentHealth <= 0)
+        if (weaponData.durability <= 0)
         {
             //Die
-            BattleManager.instance.UnitDefeated(this);
+            BattleManager.instance.WeaponBroke(weaponData);
         }
     }
 
-    public void ReceiveKnockback(UnitController attacker, Vector2 knockbackVector)
+    public void ReceiveKnockback(Vector2 knockbackVector)
     {
         // if (invinciTimeCD > 0)
         //     return;
         // else
         //     invinciTimeCD = defualtInvincTime;
-        rb2d.AddForce(knockbackVector *= unitData.knockBackResis, ForceMode2D.Impulse);
+        rb2d.AddForce(knockbackVector *= weaponData.knockBackResis, ForceMode2D.Impulse);
         stateManager.currentState.OnTakeHit(stateManager);
     }
 
@@ -185,22 +136,22 @@ public class UnitController : MonoBehaviour
 
     #region SendInteraction
 
-    private void DamageTarget(UnitController target)
-    {
-        target.TakeDamage(this, unitData.attack);
-    }
+    // private void DamageTarget(UnitController target)
+    // {
+    //     target.TakeDamage(this, weaponData.attack);
+    // }
 
-    private void KnockBackTarget(UnitController target)
-    {
-        float velocityX = rb2d.velocity.x;
-        if (velocityX > 0)
-            velocityX = Mathf.Clamp(velocityX, 5f, 20f);
-        else
-            velocityX = Mathf.Clamp(velocityX, -20f, -5f);
-        Vector2 knockbackVector = new Vector2(velocityX * 1f, 0);
-        knockbackVector.y = defaultUpThrow;//defualt upthrow
-        target.ReceiveKnockback(this, knockbackVector);
-    }
+    // private void KnockBackTarget(UnitController target)
+    // {
+    //     float velocityX = rb2d.velocity.x;
+    //     if (velocityX > 0)
+    //         velocityX = Mathf.Clamp(velocityX, 5f, 20f);
+    //     else
+    //         velocityX = Mathf.Clamp(velocityX, -20f, -5f);
+    //     Vector2 knockbackVector = new Vector2(velocityX * weaponData.knockbackForce, 0);
+    //     knockbackVector.y = defaultUpThrow;//defualt upthrow
+    //     target.ReceiveKnockback(this, knockbackVector);
+    // }
 
     private bool NotInIgnoreList(UnitController unit)
     {
@@ -216,50 +167,50 @@ public class UnitController : MonoBehaviour
 
     #region Physic
 
-    private void OnContactOpponent(UnitController otherUnit)
-    {
-        if (IsOwnTurn())
-        {
-            //In attack State
-            if (stateManager.currentState == stateManager.attackState)
-            {
-                //avaliable target
-                if (NotInIgnoreList(otherUnit))
-                {
-                    //? Perform Knockback
-                    KnockBackTarget(otherUnit);
-                    //? Deal dmg
-                    DamageTarget(otherUnit);
+    // private void OnContactOpponent(UnitController otherUnit)
+    // {
+    //     if (IsOwnTurn())
+    //     {
+    //         //In attack State
+    //         if (stateManager.currentState == stateManager.attackState)
+    //         {
+    //             //avaliable target
+    //             if (NotInIgnoreList(otherUnit))
+    //             {
+    //                 //? Perform Knockback
+    //                 KnockBackTarget(otherUnit);
+    //                 //? Deal dmg
+    //                 DamageTarget(otherUnit);
 
-                    //? Add to ignoreList
-                    ignoreTargets.Add(otherUnit);
-                }
-            }
-        }
-        else
-        {
-            // We compute all the contact stuffs for ourself during enemy's turn
-        }
-    }
+    //                 //? Add to ignoreList
+    //                 ignoreTargets.Add(otherUnit);
+    //             }
+    //         }
+    //     }
+    //     else
+    //     {
+    //         // We compute all the contact stuffs for ourself during enemy's turn
+    //     }
+    // }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<UnitController>())
-        {
-            UnitController otherUnit = other.GetComponent<UnitController>();
-            if (otherUnit.side != side)
-                OnContactOpponent(otherUnit);
-        }
+        // if (other.gameObject.GetComponent<UnitController>())
+        // {
+        //     UnitController otherUnit = other.GetComponent<UnitController>();
+        //     if (otherUnit.side != side)
+        //         OnContactOpponent(otherUnit);
+        // }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<UnitController>())
-        {
-            UnitController otherUnit = other.GetComponent<UnitController>();
-            if (otherUnit.side != side)
-                OnContactOpponent(otherUnit);
-        }
+        // if (other.gameObject.GetComponent<UnitController>())
+        // {
+        //     UnitController otherUnit = other.GetComponent<UnitController>();
+        //     if (otherUnit.side != side)
+        //         OnContactOpponent(otherUnit);
+        // }
     }
 
     // private void CalculateLastAirHeight()
@@ -285,4 +236,5 @@ public class UnitController : MonoBehaviour
     }
 
     #endregion
+
 }

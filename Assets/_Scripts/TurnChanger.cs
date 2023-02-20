@@ -21,10 +21,10 @@ public class TurnChanger : MonoBehaviour
 
     private void TurnPrepare()
     {
-        indicator.DOLocalMoveX(-moveDistance, prepareDuration).OnComplete(() => StartTurn());
+        indicator.DOLocalMoveX(-moveDistance, prepareDuration).OnComplete(() => StartBattle());
     }
 
-    private void StartTurn()
+    private void StartBattle()
     {
         //First turn
         BattleManager.instance.StartBattle();

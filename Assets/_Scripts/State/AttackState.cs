@@ -10,7 +10,7 @@ public class AttackState : State
     public override void OnEnterState(StateManager stateManager)
     {
         //perform attack
-        stateManager.unitController.PerformAttack();
+        stateManager.unitController.weaponData.PerformAttack(stateManager.unitController);
         durationCountDown = attackDuration;
     }
 
