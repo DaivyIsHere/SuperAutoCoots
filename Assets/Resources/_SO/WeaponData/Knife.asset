@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3601d7380d0ef8a4381b353b775c1fa0, type: 3}
-  m_Name: Spear
+  m_Name: Knife
   m_EditorClassIdentifier: 
-  damage: 1
-  maxDurability: 5
-  movementVelocity: 10
+  damage: 2
+  maxDurability: 3
+  movementVelocity: 8
   knockBackResis: 0
   size: 1
-  useTurn: 3
+  useTurn: 2
   weaponID: 0
-  durability: 5
+  durability: 3
   projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
-  spawnOffset: {x: 0.75, y: 0}
+  spawnOffset: {x: 0, y: 0}
   spawnRotZ: 0
   spawnVelocity: {x: 0, y: 0}
   worldSpaceSpawn: 0

@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
-    //*Dynamic
-    public UnitController owner;
-    public int damage = 0;
-    public float knockbackForce = 1f;
-
-    //*Static
-    public float defaultUpThrow = 10f;
-
     [Header("Component")]
+    public UnitController owner;
+    public ProjectileData projectileData;
     public Rigidbody2D rb2d;
 
-    [Header("LifeTime")]
-    public float defualtLifeTime = 2f;
+    public int damage = 0;
     public float lifeTime = 0f;
+    public int facing = 1;
+
+    //*Const
+    private float defaultUpThrow = 5f;
+    private float minVelocityKnockback = 5f;
+    private float maxVelocityKnockback = 20f;
+
 
     private void Awake() 
     {
@@ -26,7 +26,10 @@ public class ProjectileController : MonoBehaviour
 
     void Start()
     {
-        lifeTime = defualtLifeTime;
+        if(!projectileData)
+            Debug.LogError("No ProjectileData Assigned.");
+            
+        lifeTime = projectileData.defaultLifeTime;
     }
 
     void Update()
@@ -39,17 +42,20 @@ public class ProjectileController : MonoBehaviour
     
     private void DamageTarget(UnitController target)
     {
-        target.TakeDamage(damage);
+        if(target.facing == facing)
+            target.TakeDamage(Mathf.RoundToInt(damage * projectileData.backStabDamageMult), owner);
+        else
+            target.TakeDamage(damage, owner);
     }
 
     private void KnockBackTarget(UnitController target)
     {
         float velocityX = owner.rb2d.velocity.x;
         if (velocityX > 0)
-            velocityX = Mathf.Clamp(velocityX, 5f, 20f);
+            velocityX = Mathf.Clamp(velocityX, minVelocityKnockback, maxVelocityKnockback);
         else
-            velocityX = Mathf.Clamp(velocityX, -20f, -5f);
-        Vector2 knockbackVector = new Vector2(velocityX * knockbackForce, 0);
+            velocityX = Mathf.Clamp(velocityX, -maxVelocityKnockback, -minVelocityKnockback);
+        Vector2 knockbackVector = new Vector2(velocityX * projectileData.knockbackForce, 0);
         knockbackVector.y = defaultUpThrow;//defualt upthrow
         target.ReceiveKnockback(knockbackVector);
     }
@@ -60,6 +66,12 @@ public class ProjectileController : MonoBehaviour
         KnockBackTarget(otherUnit);
         //? Deal dmg
         DamageTarget(otherUnit);
+
+        if(!projectileData.penetrate)
+            Destroy(this.gameObject);
+
+        //dont collide with it again
+        Physics2D.IgnoreCollision(GetComponentInChildren<Collider2D>(), otherUnit.GetComponent<Collider2D>(), true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

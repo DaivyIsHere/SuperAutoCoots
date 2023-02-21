@@ -14,6 +14,25 @@ public class BattleManager : Singleton<BattleManager>
     public UnitController leftUnit;
     public UnitController rightUnit;
 
+    [Header("Weapons")]
+    public List<WeaponData> leftDefaultWeapons;
+    public List<WeaponData> rightDefaultWeapons;
+
+    void Start() 
+    {
+        //Left
+        foreach (var w in leftDefaultWeapons)
+            leftUnit.allWeapons.Add(Instantiate(w));
+        leftUnit.currentWeapon = leftUnit.allWeapons[0];
+        leftUnit.unitWeaponDisplay.IniAllWeapons();
+
+        //Right
+        foreach (var w in rightDefaultWeapons)
+            rightUnit.allWeapons.Add(Instantiate(w));
+        rightUnit.currentWeapon = rightUnit.allWeapons[0];
+        rightUnit.unitWeaponDisplay.IniAllWeapons();
+    }
+
     public void StartBattle()
     {
         isRunning = true;
@@ -29,9 +48,9 @@ public class BattleManager : Singleton<BattleManager>
         OnTurnChange?.Invoke(currentSide);
     }
 
-    public void WeaponBroke(WeaponData weaponData)
+    public void WeaponBroke(WeaponData weaponData, UnitController unit)
     {
-        print(weaponData.name+" Broke");
+        print(weaponData.name+" Broke. "+ unit.name);
     }
 
     public UnitController GetOpponentUnit(BattleSide side)
