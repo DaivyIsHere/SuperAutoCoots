@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3601d7380d0ef8a4381b353b775c1fa0, type: 3}
   m_Name: Spear
   m_EditorClassIdentifier: 
+  weaponSprite: {fileID: 21300000, guid: 246d7c7c8e9e6cf43893ae13c5a81bdf, type: 3}
+  description: 
   damage: 1
   maxDurability: 5
   movementVelocity: 10

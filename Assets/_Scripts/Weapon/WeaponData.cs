@@ -5,6 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewWeaponData", menuName = "Coots/WeaponData", order = 1)]
 public class WeaponData : ScriptableObject
 {
+    [Header("Info")]
+    public Sprite weaponSprite;
+    public string description;
+    
     [Header("Static")]
     public int damage = 1;
     public int maxDurability = 5;

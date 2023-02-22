@@ -171,6 +171,7 @@ public class UnitController : MonoBehaviour
                 SwitchToNextWeapon();
             else
             {
+                stateManager.SwitchState(stateManager.knockdownState);
                 Debug.LogWarning("GAME OVER!!");
             }
         }

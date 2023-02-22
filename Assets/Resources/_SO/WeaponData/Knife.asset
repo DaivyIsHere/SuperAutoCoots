@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3601d7380d0ef8a4381b353b775c1fa0, type: 3}
   m_Name: Knife
   m_EditorClassIdentifier: 
+  weaponSprite: {fileID: 21300000, guid: 2b4752bce841cc74bb73820ce5212d34, type: 3}
+  description: 
   damage: 2
   maxDurability: 3
   movementVelocity: 8

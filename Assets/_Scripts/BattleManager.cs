@@ -14,23 +14,23 @@ public class BattleManager : Singleton<BattleManager>
     public UnitController leftUnit;
     public UnitController rightUnit;
 
-    [Header("Weapons")]
-    public PlayerTeamData leftTeamData;
-    public PlayerTeamData rightTeamData;
+    //[Header("Weapons")]
+    //public PlayerTeamData leftTeamData;
+    //public PlayerTeamData rightTeamData;
     //public List<WeaponData> leftDefaultWeapons;
     //public List<WeaponData> rightDefaultWeapons;
 
     void Start() 
     {
         //Left
-        foreach (var w in leftTeamData.weapons)
-            leftUnit.allWeapons.Add(Instantiate(w));
+        foreach (var w in PlayerTeamManager.instance.weapons)
+            leftUnit.allWeapons.Add(Instantiate(w.GetWeaponData()));
         leftUnit.currentWeapon = leftUnit.allWeapons[0];
         leftUnit.unitWeaponDisplay.IniAllWeapons();
 
         //Right
-        foreach (var w in rightTeamData.weapons)
-            rightUnit.allWeapons.Add(Instantiate(w));
+        foreach (var w in PlayerTeamManager.instance.weapons) //TODO enemy weapons
+            rightUnit.allWeapons.Add(Instantiate(w.GetWeaponData()));
         rightUnit.currentWeapon = rightUnit.allWeapons[0];
         rightUnit.unitWeaponDisplay.IniAllWeapons();
     }

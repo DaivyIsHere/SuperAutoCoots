@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 048851114093bb84fa49ad56108b5260, type: 3}
-  m_Name: RightTeam
+  m_Script: {fileID: 11500000, guid: 9b892a1c61b214c4fbbf664f7542954b, type: 3}
+  m_Name: WeaponDatabase
   m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 11400000, guid: 01c2bfa056097f347a3b31bd5cd11001, type: 2}
-  - {fileID: 11400000, guid: eb52824d10ca1bd4e8af78c9a8d6d784, type: 2}

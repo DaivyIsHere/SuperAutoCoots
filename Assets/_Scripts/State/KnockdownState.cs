@@ -21,7 +21,7 @@ public class KnockdownState : State
 
     public override void OnAttackReady(StateManager stateManager)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void OnTakeHit(StateManager stateManager)
