@@ -10,6 +10,7 @@ public class WeaponController : MonoBehaviour
     [Header("Component")]
     public WeaponData weaponData;
     public SpriteRenderer weaponSprite;
+    public Image useTurnDisplay;
     public TextMeshPro damageText;
     public TextMeshPro durabilityText;
     public Image durabilityDisplay;
@@ -49,11 +50,17 @@ public class WeaponController : MonoBehaviour
         transform.DOMove(targetPos, 1f).SetEase(Ease.InOutSine).SetLink(gameObject);
     }
 
-    public void UpdateIsCurrentWeapon(bool isCurrentWeapon)
+    public void UpdateCurrentWeaponInfo(bool isCurrentWeapon, int usedTurn)
     {
         if (isCurrentWeapon)
-            weaponSprite.DOFade(1f, 0.5f);
+        {
+            useTurnDisplay.fillAmount = (float)(weaponData.useTurn - (usedTurn )) / (float)weaponData.useTurn;
+            //weaponSprite.DOFade(1f, 0.5f);
+        }
         else
-            weaponSprite.DOFade(0.2f, 0.5f);
+        {
+            useTurnDisplay.fillAmount = 0;
+            //weaponSprite.DOFade(0.2f, 0.5f);
+        }
     }
 }

@@ -23,6 +23,7 @@ public class UnitController : MonoBehaviour
     public WeaponData currentWeapon;//Assign by BattleManager
     public event Action OnWeaponChange;
     public event Action<int> OnWeaponRemove;
+    public event Action OnWeaponAttack;//Called by attackState
 
     [Header("Phsyics")]
     public LayerMask groundLayer;
@@ -112,12 +113,9 @@ public class UnitController : MonoBehaviour
             if (currentWeaponTurn > currentWeapon.useTurn)
             {
                 //switch next weapon;
-                print("Switch weapon");
 
                 if (allWeapons.Count > 1)
                     SwitchToNextWeapon();
-                else
-                    print("1 weapon left, no changes");
 
                 currentWeaponTurn = 1;//1 because we will attack once this turn with the next weapon
             }
@@ -144,6 +142,11 @@ public class UnitController : MonoBehaviour
         return side == BattleManager.instance.currentSide;
     }
 
+    public void OnAttack()//Called by attackState
+    {
+        OnWeaponAttack?.Invoke();
+    }
+
     #endregion
 
     #region ReceiveInteraction
@@ -159,8 +162,6 @@ public class UnitController : MonoBehaviour
         if (currentWeapon.durability <= 0)
         {
             //Die
-            print(GetCurrentWeaponIndex());
-            print("count : " + allWeapons.Count);
             OnWeaponRemove?.Invoke(GetCurrentWeaponIndex());
             allWeapons.Remove(currentWeapon);
             BattleManager.instance.WeaponBroke(currentWeapon, this);

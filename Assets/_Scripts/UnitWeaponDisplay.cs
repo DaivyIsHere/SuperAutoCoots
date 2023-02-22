@@ -22,6 +22,7 @@ public class UnitWeaponDisplay : MonoBehaviour
     {
         unitController.OnWeaponChange += UpdateWeaponIndicator;
         unitController.OnWeaponRemove += RemoveWeaponController;
+        unitController.OnWeaponAttack += UpdateCurrentWeaponInfo;
     }
 
     void Update()
@@ -54,6 +55,7 @@ public class UnitWeaponDisplay : MonoBehaviour
         }
         AlignAllWeapons();
         UpdateWeaponIndicator();
+        UpdateCurrentWeaponInfo();
     }
 
     public void RemoveWeaponController(int index)
@@ -83,14 +85,17 @@ public class UnitWeaponDisplay : MonoBehaviour
     {
         int currentIndex = unitController.GetCurrentWeaponIndex();
         weaponIndicator.DOMove(GetWeaponPositionByIndex(currentIndex), 0.5f).SetEase(Ease.InOutSine);
-        
-        for (int i = 0; i < weaponControllers.Count; i++)
-        {
-            if(i == currentIndex)
-                weaponControllers[i].UpdateIsCurrentWeapon(true);
-            else
-                weaponControllers[i].UpdateIsCurrentWeapon(false);
-        }
     }
 
+    public void UpdateCurrentWeaponInfo()
+    {
+        int currentIndex = unitController.GetCurrentWeaponIndex();
+        for (int i = 0; i < weaponControllers.Count; i++)
+        {
+            if (i == currentIndex)
+                weaponControllers[i].UpdateCurrentWeaponInfo(true, unitController.currentWeaponTurn);
+            else
+                weaponControllers[i].UpdateCurrentWeaponInfo(false, unitController.currentWeaponTurn);
+        }
+    }
 }

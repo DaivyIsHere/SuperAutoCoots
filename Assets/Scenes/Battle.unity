@@ -2126,12 +2126,8 @@ MonoBehaviour:
   currentSide: 0
   leftUnit: {fileID: 2099792268}
   rightUnit: {fileID: 1365740409}
-  leftDefaultWeapons:
-  - {fileID: 11400000, guid: eb52824d10ca1bd4e8af78c9a8d6d784, type: 2}
-  - {fileID: 11400000, guid: 01c2bfa056097f347a3b31bd5cd11001, type: 2}
-  rightDefaultWeapons:
-  - {fileID: 11400000, guid: 01c2bfa056097f347a3b31bd5cd11001, type: 2}
-  - {fileID: 11400000, guid: eb52824d10ca1bd4e8af78c9a8d6d784, type: 2}
+  leftTeamData: {fileID: 11400000, guid: db10b425b38c6e444809f98e181b3bbe, type: 2}
+  rightTeamData: {fileID: 11400000, guid: 93a6bd9a3ab0bc6458c99a29ec47e025, type: 2}
 --- !u!1001 &1365740408
 PrefabInstance:
   m_ObjectHideFlags: 0

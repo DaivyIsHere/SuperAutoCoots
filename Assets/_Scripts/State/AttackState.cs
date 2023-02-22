@@ -17,6 +17,7 @@ public class AttackState : State
             return;
         }
         stateManager.unitController.currentWeapon.PerformAttack(stateManager.unitController);
+        stateManager.unitController.OnAttack();
         //durationCountDown = stateManager.unitController.weaponData.movementDuration;
     }
 

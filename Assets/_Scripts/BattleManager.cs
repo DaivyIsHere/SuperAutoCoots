@@ -15,19 +15,21 @@ public class BattleManager : Singleton<BattleManager>
     public UnitController rightUnit;
 
     [Header("Weapons")]
-    public List<WeaponData> leftDefaultWeapons;
-    public List<WeaponData> rightDefaultWeapons;
+    public PlayerTeamData leftTeamData;
+    public PlayerTeamData rightTeamData;
+    //public List<WeaponData> leftDefaultWeapons;
+    //public List<WeaponData> rightDefaultWeapons;
 
     void Start() 
     {
         //Left
-        foreach (var w in leftDefaultWeapons)
+        foreach (var w in leftTeamData.weapons)
             leftUnit.allWeapons.Add(Instantiate(w));
         leftUnit.currentWeapon = leftUnit.allWeapons[0];
         leftUnit.unitWeaponDisplay.IniAllWeapons();
 
         //Right
-        foreach (var w in rightDefaultWeapons)
+        foreach (var w in rightTeamData.weapons)
             rightUnit.allWeapons.Add(Instantiate(w));
         rightUnit.currentWeapon = rightUnit.allWeapons[0];
         rightUnit.unitWeaponDisplay.IniAllWeapons();
@@ -50,7 +52,7 @@ public class BattleManager : Singleton<BattleManager>
 
     public void WeaponBroke(WeaponData weaponData, UnitController unit)
     {
-        print(weaponData.name+" Broke. "+ unit.name);
+        //print(weaponData.name+" Broke. "+ unit.name);
     }
 
     public UnitController GetOpponentUnit(BattleSide side)
