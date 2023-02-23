@@ -87,6 +87,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopItem
       objectReference: {fileID: 0}
+    - target: {fileID: 4112455527247145469, guid: 9bdd50564ffa80945b7f90513a943dc0, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8377690022639945874, guid: 9bdd50564ffa80945b7f90513a943dc0, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8840656137192741641, guid: 9bdd50564ffa80945b7f90513a943dc0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -184,6 +192,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6848380561555269121, guid: 9bdd50564ffa80945b7f90513a943dc0, type: 3}
   m_PrefabInstance: {fileID: 7958340958860676206}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6108470229297508807 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4230025332725824937, guid: 9bdd50564ffa80945b7f90513a943dc0, type: 3}
+  m_PrefabInstance: {fileID: 7958340958860676206}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6383742019299783288 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3955901431789927958, guid: 9bdd50564ffa80945b7f90513a943dc0, type: 3}
+  m_PrefabInstance: {fileID: 7958340958860676206}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7187444452979582398 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 995113316158679504, guid: 9bdd50564ffa80945b7f90513a943dc0, type: 3}
@@ -205,6 +235,8 @@ MonoBehaviour:
   slot: {fileID: 0}
   weaponDisplay: {fileID: 8808214495593601563}
   selectIndicator: {fileID: 3565691169157687919}
+  damageDisplay: {fileID: 6108470229297508807}
+  durabilityDisplay: {fileID: 6383742019299783288}
   isSelected: 0
   LockImage: {fileID: 572436631728018309}
   isLocked: 0

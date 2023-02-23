@@ -10,6 +10,8 @@ public class AttackState : State
     
     public override void OnEnterState(StateManager stateManager)
     {
+        if(!BattleManager.instance.isRunning)
+            return;
         //perform attack
         if(!stateManager.unitController.currentWeapon)
         {

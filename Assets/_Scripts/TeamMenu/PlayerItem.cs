@@ -15,21 +15,78 @@ public class PlayerItem : Item, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        //TODO MERGE
-        
-        //switch
         if (eventData.pointerDrag.GetComponent<PlayerItem>())
         {
             print("drop on other item");
             PlayerItem itemDropped = eventData.pointerDrag.GetComponent<PlayerItem>();
-            ItemSlot itemDroppedSlot = itemDropped.slot;
-
-            ((PlayerItemSlot)this.slot).item = itemDropped;
-            itemDropped.slot = this.slot;
-
-            ((PlayerItemSlot)itemDroppedSlot).item = this;
-            slot = itemDroppedSlot;
-            SnapBackToSlot();
+            if (itemDropped.weaponData.GetOriginalName() == weaponData.GetOriginalName())
+            {
+                MergeItem(itemDropped);
+            }
+            else
+            {
+                //Swap
+                SwapSlotWithItem((PlayerItemSlot)this.slot, (PlayerItemSlot)itemDropped.slot);
+            }
+        }
+        else if (eventData.pointerDrag.GetComponent<ShopItem>())
+        {
+            //Upgrade
+            ShopItem itemDropped = eventData.pointerDrag.GetComponent<ShopItem>();
+            if (itemDropped.weaponData.GetOriginalName() == weaponData.GetOriginalName())
+            {
+                //Check can buy
+                if (TeamBuildManager.instance.BuyWeapon(itemDropped))
+                {
+                    MergeItem(itemDropped);
+                }
+            }
         }
     }
+
+    public void SwapSlotWithItem(PlayerItemSlot selfItemSlot, PlayerItemSlot targetItemSlot)
+    {
+        PlayerItem targetItem = targetItemSlot.item;
+        PlayerItem selfItem = selfItemSlot.item;
+
+        PlayerItemSlot targetItemOldSlot = targetItemSlot;
+        PlayerItemSlot selfOldSlot = selfItemSlot;
+
+        if (targetItem == null)
+        {
+            selfOldSlot.item = null;
+            targetItemOldSlot.item = selfItem;
+            selfItem.slot = targetItemOldSlot;
+            selfItem.SnapBackToSlot();
+        }
+        else
+        {
+            targetItemOldSlot.item = selfItem;
+            selfOldSlot.item = targetItem;
+
+            targetItem.slot = selfOldSlot;
+            selfItem.slot = targetItemOldSlot;
+
+            targetItem.SnapBackToSlot();
+            selfItem.SnapBackToSlot();
+        }
+    }
+
+    public void MergeItem(Item mergeItem)
+    {
+        weaponData.totalExp += mergeItem.weaponData.totalExp + 1;
+        weaponData.additionalDamage += 1;
+        weaponData.additionalDurability += 1;
+        if (mergeItem is PlayerItem)
+        {
+            ((PlayerItemSlot)mergeItem.slot).item = null;
+        }
+        else if (mergeItem is ShopItem)
+        {
+            ((ShopItemSlot)mergeItem.slot).item = null;
+        }
+        Destroy(mergeItem.gameObject);
+        UpdateStatsDisplay();
+    }
+
 }

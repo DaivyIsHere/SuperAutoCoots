@@ -21,7 +21,7 @@ public class TurnChanger : MonoBehaviour
 
     private void TurnPrepare()
     {
-        indicator.DOLocalMoveX(-moveDistance, prepareDuration).OnComplete(() => StartBattle());
+        indicator.DOLocalMoveX(-moveDistance, prepareDuration).OnComplete(() => StartBattle()).SetLink(indicator.gameObject);
     }
 
     private void StartBattle()
@@ -45,7 +45,7 @@ public class TurnChanger : MonoBehaviour
 
     private void DisplayTurnChange()
     {
-        indicator.DOLocalMoveX(moveDistance, turnInterval).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+        indicator.DOLocalMoveX(moveDistance, turnInterval).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo).SetLink(indicator.gameObject);
     }
 
     private void BarPunches(BattleSide currentSide)
@@ -58,6 +58,6 @@ public class TurnChanger : MonoBehaviour
 
     private void PunchAnimation(Transform target)
     {
-        target.DOPunchScale(Vector2.one * 0.5f, 0.5f, 5);
+        target.DOPunchScale(Vector2.one * 0.5f, 0.5f, 5).SetLink(target.gameObject);
     }
 }

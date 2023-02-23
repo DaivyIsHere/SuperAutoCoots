@@ -172,7 +172,8 @@ public class UnitController : MonoBehaviour
             else
             {
                 stateManager.SwitchState(stateManager.knockdownState);
-                Debug.LogWarning("GAME OVER!!");
+
+                BattleManager.instance.GameOver(side);
             }
         }
 

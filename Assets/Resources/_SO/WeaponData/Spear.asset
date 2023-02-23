@@ -13,15 +13,27 @@ MonoBehaviour:
   m_Name: Spear
   m_EditorClassIdentifier: 
   weaponSprite: {fileID: 21300000, guid: 246d7c7c8e9e6cf43893ae13c5a81bdf, type: 3}
-  description: 
-  damage: 1
-  maxDurability: 5
-  movementVelocity: 10
-  knockBackResis: 0
-  size: 1
-  useTurn: 3
-  weaponID: 0
+  description: This is a spear.
+  LVdamage: 010000000100000001000000
+  LVmaxDurability: 050000000500000005000000
+  LVmovementVelocity:
+  - 10
+  - 10
+  - 10
+  LVknockBackResis:
+  - 0
+  - 0
+  - 0
+  LVsize:
+  - 1
+  - 1
+  - 1
+  LVuseTurn: 020000000200000002000000
   durability: 5
+  totalExp: 0
+  additionalDamage: 0
+  additionalDurability: 0
+  additionalVelocity: 0
   projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
   spawnOffset: {x: 0.75, y: 0}
   spawnRotZ: 0

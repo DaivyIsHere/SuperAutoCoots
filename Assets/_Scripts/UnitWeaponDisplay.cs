@@ -18,6 +18,8 @@ public class UnitWeaponDisplay : MonoBehaviour
     public TMP_Text totalHealthText;
     public TMP_Text currentWeaponDamageText;
 
+    public int totalMaxDurability = 0;
+
     private void Start()
     {
         unitController.OnWeaponChange += UpdateWeaponIndicator;
@@ -56,6 +58,10 @@ public class UnitWeaponDisplay : MonoBehaviour
         AlignAllWeapons();
         UpdateWeaponIndicator();
         UpdateCurrentWeaponInfo();
+        foreach (var w in weaponControllers)
+        {
+            totalMaxDurability += w.weaponData.maxDurability;
+        }
     }
 
     public void RemoveWeaponController(int index)
@@ -69,22 +75,20 @@ public class UnitWeaponDisplay : MonoBehaviour
     public void UpdateAvatarDisplay()
     {
         int totalHealth = 0;
-        int totalMaxHealth = 0;
         foreach (var w in weaponControllers)
         {
             totalHealth += w.weaponData.durability;
-            totalMaxHealth += w.weaponData.maxDurability;
         }
 
-        totalHealthDisplay.fillAmount = (float)totalHealth / (float)totalMaxHealth;
-        totalHealthText.text = totalHealth.ToString() + " / " + totalMaxHealth.ToString();
-        currentWeaponDamageText.text = unitController.currentWeapon.damage.ToString();
+        totalHealthDisplay.fillAmount = (float)totalHealth / (float)totalMaxDurability;
+        totalHealthText.text = totalHealth.ToString() + " / " + totalMaxDurability.ToString();
+        currentWeaponDamageText.text = unitController.currentWeapon ? unitController.currentWeapon.damage.ToString() : "";
     }
 
     public void UpdateWeaponIndicator()
     {
         int currentIndex = unitController.GetCurrentWeaponIndex();
-        weaponIndicator.DOMove(GetWeaponPositionByIndex(currentIndex), 0.5f).SetEase(Ease.InOutSine);
+        weaponIndicator.DOMove(GetWeaponPositionByIndex(currentIndex), 0.5f).SetEase(Ease.InOutSine).SetLink(weaponIndicator.gameObject);
     }
 
     public void UpdateCurrentWeaponInfo()

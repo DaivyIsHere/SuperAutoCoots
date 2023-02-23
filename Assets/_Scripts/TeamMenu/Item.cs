@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
-public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler
 {
     public WeaponData weaponData;
     public ItemSlot slot;
@@ -15,6 +16,8 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     protected RectTransform rect;
     [SerializeField] protected Image weaponDisplay;
     [SerializeField] protected RectTransform selectIndicator;
+    [SerializeField] protected TMP_Text damageDisplay;
+    [SerializeField] protected TMP_Text durabilityDisplay;
 
     public bool isSelected;
 
@@ -28,7 +31,16 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         canvas = TeamBuildManager.instance.mainCanvas;
         if (weaponData)
+        {
             weaponDisplay.sprite = weaponData.weaponSprite;
+            UpdateStatsDisplay();
+        }
+    }
+
+    public void UpdateStatsDisplay()
+    {
+        damageDisplay.text = weaponData.damage.ToString();
+        durabilityDisplay.text = weaponData.maxDurability.ToString();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -61,11 +73,17 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         selectIndicator.gameObject.SetActive(true);
         isSelected = true;
+        ItemInfoDisplay.instance.ShowInfo(this);
     }
 
     public void OnDeselect()
     {
         selectIndicator.gameObject.SetActive(false);
         isSelected = false;
+    }
+
+    public virtual void OnPointerEnter(PointerEventData eventData)
+    {
+        //ItemInfoDisplay.instance.ShowInfo(this);
     }
 }

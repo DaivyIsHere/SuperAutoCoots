@@ -8,19 +8,45 @@ public class WeaponData : ScriptableObject
     [Header("Info")]
     public Sprite weaponSprite;
     public string description;
-    
-    [Header("Static")]
-    public int damage = 1;
-    public int maxDurability = 5;
-    [Space]
-    public float movementVelocity = 10f;//magnitude
-    [Range(0f, 1f)] public float knockBackResis = 0f;
-    public float size = 1f;
-    public int useTurn = 3;//how many turns before switching to the next weapon
+
+    public int damage { get { return LVdamage[level] + additionalDamage; } }
+    public int maxDurability { get { return LVmaxDurability[level] + additionalDurability; } }
+    public float movementVelocity { get { return LVmovementVelocity[level] + additionalVelocity; } }
+    public float knockBackResis { get { return LVknockBackResis[level]; } }
+    public float size { get { return LVsize[level]; } }
+    public int useTurn { get { return LVuseTurn[level]; } }
+
+    [Header("Level Stats")]
+    public List<int> LVdamage = new List<int>() { 1, 1, 1 };
+    public List<int> LVmaxDurability = new List<int>() { 5, 5, 5 };
+    public List<float> LVmovementVelocity = new List<float>() { 10f, 10f, 10f };//magnitude
+    [Range(0f, 1f)] public List<float> LVknockBackResis = new List<float>() { 0, 0, 0 };
+    public List<float> LVsize = new List<float>() { 1, 1, 1 };
+    public List<int> LVuseTurn = new List<int>() { 2, 2, 2 };//how many turns before switching to the next weapon
 
     [Header("Dynamic")]
-    public int weaponID;
     public int durability;
+    public int totalExp = 0;
+    public int level
+    {
+        get
+        {
+            if (totalExp >= lv2Exp)
+                return 2;
+            else if (totalExp >= lv1Exp)
+                return 1;
+            else if (totalExp >= lv0Exp)
+                return 0;//level 0 display as lv1
+            return 0;
+        }
+    }
+    private int lv0Exp = 0;//total xp needed
+    private int lv1Exp = 2;//total xp needed
+    private int lv2Exp = 5;//total xp needed
+
+    public int additionalDamage = 0;
+    public int additionalDurability = 0;
+    public int additionalVelocity = 0;
 
     [Header("Projectile")]
     public ProjectileData projectileData;
@@ -30,11 +56,35 @@ public class WeaponData : ScriptableObject
     public bool worldSpaceSpawn = false;//spawn as unit's child or not
 
 
-    private void OnEnable()
+    private void OnValidate()
     {
         durability = maxDurability;
+        CheckLVStats();
         // if(BattleManager.instance)s
         //     ability.IniAbility();
+    }
+
+    public void CheckLVStats()
+    {
+        if (LVdamage.Count != 3) WarningOnStats();
+        if (LVmaxDurability.Count != 3) WarningOnStats();
+        if (LVmovementVelocity.Count != 3) WarningOnStats();
+        if (LVknockBackResis.Count != 3) WarningOnStats();
+        if (LVsize.Count != 3) WarningOnStats();
+        if (LVuseTurn.Count != 3) WarningOnStats();
+    }
+
+    public void WarningOnStats()
+    {
+        Debug.LogWarning("Missing stats for " + this.name);
+    }
+
+    public string GetOriginalName()
+    {
+        string originalName = name;
+        if (originalName[originalName.Length - 1] == ')')//is (Clone)
+            originalName = originalName.Substring(0, originalName.ToCharArray().Length - 7);//Remove (Clone) from weaponName
+        return originalName;
     }
 
     public void PerformAttack(UnitController unit)
@@ -49,8 +99,8 @@ public class WeaponData : ScriptableObject
             return;
 
         Vector2 positionDiff = (BattleManager.instance.GetOpponentUnit(unit.side).transform.position - unit.transform.position).normalized;
-        unit.rb2d.AddForce(new Vector2(positionDiff.x, 0) * movementVelocity, ForceMode2D.Impulse);
-        //unit.rb2d.velocity = new Vector2(positionDiff.x, 0) * movementVelocity;
+        //unit.rb2d.AddForce(new Vector2(positionDiff.x, 0) * movementVelocity, ForceMode2D.Impulse);
+        unit.rb2d.velocity = new Vector2(positionDiff.x, 0) * movementVelocity;
         unit.FaceTowards(positionDiff.x);
     }
 

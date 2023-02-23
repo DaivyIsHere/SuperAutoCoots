@@ -11,6 +11,7 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
     [Header("Component")]
     public Canvas mainCanvas;
     public TMP_Text playerGoldText;
+    public TMP_Text playerLivesText;
     public Button sellLockBtn;
     public TMP_Text sellLockText;
     public Button rerollBtn;
@@ -19,6 +20,7 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
     [Header("ItemSlots")]
     public List<PlayerItemSlot> playerSlots;
     public List<ShopItemSlot> shopSlots;
+    public GameObject playerItemPref;
     public GameObject shopItemPref;
     public Transform itemContainer;
 
@@ -43,7 +45,9 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
         sellLockBtn.onClick.AddListener(OnClickSellLockButton);
 
         playerGold = startGold;
+        playerLivesText.text = "Lives : " + PlayerTeamManager.instance.lives.ToString();
         allWeapon.AddRange(Resources.LoadAll<WeaponData>("_SO/WeaponData"));
+        IniAllPlayerWeapon();
         RerollShopItems();
     }
 
@@ -58,6 +62,18 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
             rerollBtn.interactable = false;
 
         UpdateLockSellButton();
+    }
+
+    public void IniAllPlayerWeapon()
+    {
+        Canvas.ForceUpdateCanvases();
+        foreach (var w in PlayerTeamManager.instance.weapons)
+        {
+            PlayerItem newItem = Instantiate(playerItemPref, playerSlots[w.currentSlotIndex].transform.position, Quaternion.identity, itemContainer).GetComponent<PlayerItem>();
+            newItem.weaponData = w.GetWeaponDataNewInstance();
+            newItem.slot = playerSlots[w.currentSlotIndex];
+            playerSlots[w.currentSlotIndex].item = newItem;
+        }
     }
 
     public void RerollShopItems()
@@ -161,12 +177,26 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
 
     public void OnClickNextBattle()
     {
-        PlayerTeamManager.instance.weapons.Clear();
+        int totalWeaponCount = 0;
         foreach (var slot in playerSlots)
         {
             if (slot.item)
+                totalWeaponCount += 1;
+        }
+
+        if (totalWeaponCount <= 0)
+        {
+            Popup.instance.DisplayPopup("Drag a weapon from the shop to your team.", 1f, 1f);
+            return;
+        }
+
+        //save team
+        PlayerTeamManager.instance.weapons.Clear();
+        for (int i = 0; i < playerSlots.Count; i++)
+        {
+            if (playerSlots[i].item)
             {
-                TeamWeaponData teamWeaponData = new TeamWeaponData(slot.item.weaponData.name);
+                TeamWeaponData teamWeaponData = new TeamWeaponData(playerSlots[i].item.weaponData,i);//playerSlots[i].item.weaponData.GetOriginalName(), i);
                 PlayerTeamManager.instance.weapons.Add(teamWeaponData);
             }
         }
