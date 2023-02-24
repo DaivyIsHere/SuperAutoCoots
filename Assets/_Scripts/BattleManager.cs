@@ -17,6 +17,17 @@ public class BattleManager : Singleton<BattleManager>
 
     void Start()
     {
+        SetUpPlayerTeam();//Left
+        SetUpEnemyTeam();//Right
+
+        //Save Player Team to StageData
+        //? Disable On Webgl and just paste the component data to it, and hit build.
+        //StageManager.instance.CollectPlayerTeamData();//We collect here because we dont want to fight ourself
+        
+    }
+
+    public void TestBattle()
+    {
         leftUnit.allWeapons.Add(new TeamWeaponData("Knife", 0).GetWeaponDataNewInstance());
         leftUnit.allWeapons.Add(new TeamWeaponData("Spear", 1).GetWeaponDataNewInstance());
         leftUnit.currentWeapon = leftUnit.allWeapons[0];
@@ -26,15 +37,6 @@ public class BattleManager : Singleton<BattleManager>
         rightUnit.allWeapons.Add(new TeamWeaponData("Knife", 1).GetWeaponDataNewInstance());
         rightUnit.currentWeapon = rightUnit.allWeapons[0];
         rightUnit.unitWeaponDisplay.IniAllWeapons();
-        
-        //TODO you need these instead
-        /*
-        SetUpPlayerTeam();//Left
-        SetUpEnemyTeam();//Right
-
-        //Save Player Team to StageData
-        StageManager.instance.CollectPlayerTeamData();//We collect here because we dont want to fight ourself
-        */
     }
 
     public void StartBattle()
@@ -54,7 +56,7 @@ public class BattleManager : Singleton<BattleManager>
     public void SetUpEnemyTeam()
     {
         StageData stageData = StageManager.instance.allStageData.GetStageDataByStage(PlayerDataManager.instance.stage);
-        if(stageData == null)
+        if (stageData == null)
         {
             Debug.LogError("NO STAGE DATA FOR STAGE : " + PlayerDataManager.instance.stage);
             return;
@@ -103,7 +105,7 @@ public class BattleManager : Singleton<BattleManager>
     private IEnumerator EndBattleAnimation(BattleSide side)
     {
         yield return new WaitForSeconds(1f);
-        if(side == BattleSide.Left)
+        if (side == BattleSide.Left)
             Popup.instance.DisplayMsg("YOU LOSE", 1, 2);
         else if (side == BattleSide.Right)
             Popup.instance.DisplayMsg("YOU WIN", 1, 2);

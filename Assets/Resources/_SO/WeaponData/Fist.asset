@@ -12,30 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3601d7380d0ef8a4381b353b775c1fa0, type: 3}
   m_Name: Fist
   m_EditorClassIdentifier: 
-  weaponSprite: {fileID: 0}
+  weaponSprite: {fileID: 1267176903, guid: 78ff80db6570ee74e8c8934fe4d85a33, type: 3}
   description: 
   LVdamage: 010000000100000001000000
-  LVmaxDurability: 050000000500000005000000
+  LVmaxDurability: 040000000600000009000000
   LVmovementVelocity:
-  - 10
-  - 10
-  - 10
+  - 9
+  - 9
+  - 9
+  LVknockbackMult:
+  - 1
+  - 1.5
+  - 2
   LVknockBackResis:
   - 0
   - 0
   - 0
+  LVuseTurn: 020000000200000002000000
   LVsize:
   - 1
   - 1
   - 1
-  LVuseTurn: 020000000200000002000000
-  durability: 0
-  totalExp: 0
-  additionalDamage: 0
-  additionalDurability: 0
-  additionalVelocity: 0
-  projectileData: {fileID: 0}
+  LVbackStabDamageMult:
+  - 1
+  - 1
+  - 1
+  LVprojectileLifeTime:
+  - 1
+  - 1
+  - 1
+  projectilePenetrate: 1
+  projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
+  projectileSpriteOverride: {fileID: 0}
   spawnOffset: {x: 0, y: 0}
   spawnRotZ: 0
   spawnVelocity: {x: 0, y: 0}
   worldSpaceSpawn: 0
+  durability: 4
+  totalExp: 0
+  additionalDamage: 0
+  additionalDurability: 0
+  additionalVelocity: 0

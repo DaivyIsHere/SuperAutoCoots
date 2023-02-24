@@ -299,10 +299,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -3809,9 +3809,300 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d726cd1758eb674dbfc40cfefcd8a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allStageData:
+  myStageData:
     stageDataList: []
   defaultStageData:
+    stageDataList:
+    - stage: 1
+      allTeamData:
+      - weapons:
+        - weaponName: Shield
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Knife
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Dagger
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+    - stage: 2
+      allTeamData:
+      - weapons:
+        - weaponName: Shield
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 1
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Shield
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 3
+    - stage: 3
+      allTeamData:
+      - weapons:
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 3
+    - stage: 4
+      allTeamData:
+      - weapons:
+        - weaponName: Shield
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Knife
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 2
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 3
+    - stage: 5
+      allTeamData:
+      - weapons:
+        - weaponName: Spear
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Shield
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Knife
+          totalExp: 0
+          additionalDamage: 1
+          additionalDurability: 2
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 3
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 4
+    - stage: 6
+      allTeamData:
+      - weapons:
+        - weaponName: Spear
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Shield
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Knife
+          totalExp: 0
+          additionalDamage: 1
+          additionalDurability: 2
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Dagger
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 3
+        - weaponName: Fist
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 4
+    - stage: 7
+      allTeamData:
+      - weapons:
+        - weaponName: Spear
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Dagger
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Dagger
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Knife
+          totalExp: 1
+          additionalDamage: 2
+          additionalDurability: 3
+          additionalVelocity: 0
+          currentSlotIndex: 3
+        - weaponName: Fist
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 4
+    - stage: 8
+      allTeamData:
+      - weapons:
+        - weaponName: Knife
+          totalExp: 3
+          additionalDamage: 4
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Dagger
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Dagger
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Dagger
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 3
+        - weaponName: Dagger
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 4
+    - stage: 9
+      allTeamData:
+      - weapons:
+        - weaponName: Knife
+          totalExp: 3
+          additionalDamage: 4
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Fist
+          totalExp: 2
+          additionalDamage: 2
+          additionalDurability: 2
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Dagger
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 3
+        - weaponName: Dagger
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 4
+    - stage: 10
+      allTeamData:
+      - weapons:
+        - weaponName: Knife
+          totalExp: 3
+          additionalDamage: 4
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Shield
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Fist
+          totalExp: 3
+          additionalDamage: 3
+          additionalDurability: 3
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Dagger
+          totalExp: 3
+          additionalDamage: 3
+          additionalDurability: 3
+          additionalVelocity: 0
+          currentSlotIndex: 3
+  allStageData:
     stageDataList: []
 --- !u!4 &1471504140
 Transform:
@@ -4386,10 +4677,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

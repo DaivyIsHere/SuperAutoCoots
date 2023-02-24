@@ -8,6 +8,7 @@ public class ProjectileController : MonoBehaviour
     public UnitController owner;
     public ProjectileData projectileData;
     public Rigidbody2D rb2d;
+    public SpriteRenderer sprite;
 
     public int damage = 0;
     public float lifeTime = 0f;
@@ -55,7 +56,7 @@ public class ProjectileController : MonoBehaviour
             velocityX = Mathf.Clamp(velocityX, minVelocityKnockback, maxVelocityKnockback);
         else
             velocityX = Mathf.Clamp(velocityX, -maxVelocityKnockback, -minVelocityKnockback);
-        Vector2 knockbackVector = new Vector2(velocityX * projectileData.knockbackForce, 0);
+        Vector2 knockbackVector = new Vector2(velocityX * projectileData.knockbackMult, 0);
         knockbackVector.y = defaultUpThrow;//defualt upthrow
         target.ReceiveKnockback(knockbackVector);
     }

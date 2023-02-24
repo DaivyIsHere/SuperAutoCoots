@@ -20,22 +20,36 @@ MonoBehaviour:
   - 10
   - 10
   - 10
+  LVknockbackMult:
+  - 1
+  - 1
+  - 1
   LVknockBackResis:
   - 0
   - 0
   - 0
+  LVuseTurn: 020000000200000002000000
   LVsize:
   - 1
   - 1
   - 1
-  LVuseTurn: 020000000200000002000000
+  LVbackStabDamageMult:
+  - 1
+  - 1
+  - 1
+  LVprojectileLifeTime:
+  - 1
+  - 1
+  - 1
+  projectilePenetrate: 1
+  projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
+  projectileSpriteOverride: {fileID: 0}
+  spawnOffset: {x: 0, y: 0}
+  spawnRotZ: 0
+  spawnVelocity: {x: 0, y: 0}
+  worldSpaceSpawn: 0
   durability: 5
   totalExp: 0
   additionalDamage: 0
   additionalDurability: 0
   additionalVelocity: 0
-  projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
-  spawnOffset: {x: 0.75, y: 0}
-  spawnRotZ: 0
-  spawnVelocity: {x: 0, y: 0}
-  worldSpaceSpawn: 0

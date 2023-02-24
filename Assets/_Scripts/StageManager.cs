@@ -11,8 +11,9 @@ public class StageManager : PersistentSingleton<StageManager>
 
     void Start()
     {
-        myStageData = StageDataFile.LoadMyData();
-        defaultStageData = StageDataFile.LoadDefaultData();
+        //? Disable On Webgl and just paste the component data to it, and hit build.
+        //defaultStageData = StageDataFile.LoadDefaultData();
+        //myStageData = StageDataFile.LoadMyData();
 
         foreach (var sd in defaultStageData.stageDataList)
         {

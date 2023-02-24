@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [CreateAssetMenu(fileName = "NewWeaponData", menuName = "Coots/WeaponData", order = 1)]
 public class WeaponData : ScriptableObject
@@ -13,23 +14,31 @@ public class WeaponData : ScriptableObject
     public int maxDurability { get { return LVmaxDurability[level] + additionalDurability; } }
     public float movementVelocity { get { return LVmovementVelocity[level] + additionalVelocity; } }
     public int useTurn { get { return LVuseTurn[level]; } }
-    public float knockbackForce { get { return LVknockbackForce[level]; } }
+    public float knockbackMult { get { return LVknockbackMult[level]; } }
     public float knockBackResis { get { return LVknockBackResis[level]; } }
     public float size { get { return LVsize[level]; } }
     public float backStabDamageMult { get { return LVbackStabDamageMult[level]; } }
     public float defaultLifeTime { get { return LVprojectileLifeTime[level]; } }
 
-    [Header("Level Stats")]
-    public List<int> LVdamage = new List<int>() { 1, 1, 1 };
-    public List<int> LVmaxDurability = new List<int>() { 5, 5, 5 };
-    public List<float> LVmovementVelocity = new List<float>() { 10f, 10f, 10f };//magnitude
-    public List<int> LVuseTurn = new List<int>() { 2, 2, 2 };//how many turns before switching to the next weapon
-    [Range(1f, 3f)] public List<float> LVknockbackForce = new List<float>() { 1, 1, 1 };//velocity.magnitude multiply by this
-    [Range(0f, 1f)] public List<float> LVknockBackResis = new List<float>() { 0, 0, 0 };
-    public List<float> LVsize = new List<float>() { 1, 1, 1 };
-    public List<float> LVbackStabDamageMult = new List<float>() { 1, 1, 1 };
+    //[Header("Level Stats")]
+    [GUIColor(1, 0.6f, 0.4f)][LabelText("DMG")][HorizontalGroup("Basic Stats", LabelWidth = 20)] public List<int> LVdamage = new List<int>() { 1, 1, 1 };
+    [GUIColor(1, 0.6f, 0.4f)][LabelText("HEALTH")][HorizontalGroup("Basic Stats", LabelWidth = 20)] public List<int> LVmaxDurability = new List<int>() { 5, 5, 5 };
+    [GUIColor(1, 0.6f, 0.4f)][LabelText("SPEED")][HorizontalGroup("Basic Stats", LabelWidth = 20)] public List<float> LVmovementVelocity = new List<float>() { 10f, 10f, 10f };//magnitude
+    [GUIColor(0.3f, 0.8f, 0.8f, 1f)][LabelText("KBForce")][HorizontalGroup("Knockback", LabelWidth = 20)][Range(1f, 3f)] public List<float> LVknockbackMult = new List<float>() { 1, 1, 1 };//velocity.magnitude multiply by this
+    [GUIColor(0.3f, 0.8f, 0.8f, 1f)][LabelText("KBResis")][HorizontalGroup("Knockback", LabelWidth = 20)][Range(0f, 1f)] public List<float> LVknockBackResis = new List<float>() { 0, 0, 0 };
+    [LabelText("Turn")][HorizontalGroup("Info", LabelWidth = 20)]public List<int> LVuseTurn = new List<int>() { 2, 2, 2 };//how many turns before switching to the next weapon
+    [LabelText("Size")][HorizontalGroup("Info", LabelWidth = 20)]public List<float> LVsize = new List<float>() { 1, 1, 1 };
+    [LabelText("BackStab")]public List<float> LVbackStabDamageMult = new List<float>() { 1, 1, 1 };
     public List<float> LVprojectileLifeTime = new List<float>() { 1, 1, 1 };
     public bool projectilePenetrate = true;
+
+    [Header("Projectile")]
+    public ProjectileData projectileData;
+    public Sprite projectileSpriteOverride;//Leave empty will use original
+    public Vector2 spawnOffset;
+    public float spawnRotZ;
+    public Vector2 spawnVelocity;
+    public bool worldSpaceSpawn = false;//spawn as unit's child or not
 
     [Header("Dynamic")]
     public int durability;
@@ -54,14 +63,6 @@ public class WeaponData : ScriptableObject
     public int additionalDamage = 0;
     public int additionalDurability = 0;
     public int additionalVelocity = 0;
-
-    [Header("Projectile")]
-    public ProjectileData projectileData;
-    public Vector2 spawnOffset;
-    public float spawnRotZ;
-    public Vector2 spawnVelocity;
-    public bool worldSpaceSpawn = false;//spawn as unit's child or not
-
 
     private void OnValidate()
     {
@@ -115,26 +116,35 @@ public class WeaponData : ScriptableObject
     {
         int unitFacing = unit.facing;
         Vector2 spawnPos = (Vector2)unit.transform.position + new Vector2(spawnOffset.x * unitFacing, spawnOffset.y);
-        Vector2 spawnEuler = new Vector3(0, unitFacing == 1 ? 0 : 180, spawnRotZ);
         Vector2 velocity = new Vector2(spawnVelocity.x * unitFacing, spawnVelocity.y);
         GameObject projectilePref = (GameObject)Resources.Load("Prefabs/Projectile");
-        ProjectileController projectile = Instantiate(projectilePref, spawnPos, Quaternion.Euler(spawnEuler)).GetComponent<ProjectileController>();
+        ProjectileController projectile = Instantiate(projectilePref, spawnPos, Quaternion.identity).GetComponent<ProjectileController>();
 
+        //Vector2 spawnEuler = new Vector3(0, unitFacing == 1 ? 0 : 180, spawnRotZ);
         if (!worldSpaceSpawn)
         {
             projectile.transform.parent = unit.transform;
+            projectile.transform.eulerAngles = new Vector3(0,0,spawnRotZ);
             projectile.rb2d.isKinematic = true;
         }
         else
         {
+            projectile.transform.eulerAngles = new Vector3(0,unitFacing == 1 ? 0 : 180,spawnRotZ);
             projectile.rb2d.isKinematic = false;
         }
 
         projectile.rb2d.velocity = velocity;
         projectile.owner = unit;
-        projectile.projectileData = projectileData;
         projectile.damage = damage;
         projectile.facing = unitFacing;
+
+        projectile.projectileData = projectileData;
+        projectile.projectileData.knockbackMult = knockbackMult;
+        projectile.projectileData.backStabDamageMult = backStabDamageMult;
+        projectile.projectileData.penetrate = projectilePenetrate;
+        projectile.projectileData.defaultLifeTime = defaultLifeTime;
+        
+        projectile.sprite.sprite = projectileSpriteOverride ? projectileSpriteOverride : weaponSprite;
     }
 
 }

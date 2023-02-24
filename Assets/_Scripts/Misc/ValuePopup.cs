@@ -22,6 +22,11 @@ public class ValuePopup : MonoBehaviour
         DisplayPopup();
     }
 
+    void Update()
+    {
+        transform.eulerAngles = Vector3.zero;
+    }
+
     private void StartPopup()
     {
         Sequence sequence = DOTween.Sequence();
@@ -40,7 +45,7 @@ public class ValuePopup : MonoBehaviour
         var sequence = DOTween.Sequence();
         sequence.Append(textDisplay.transform.DOPunchScale(punchScale, punchDuration, punchVibrato, punchElast));
         sequence.Join(textDisplay.transform.DOLocalMoveY(endPosY, moveDuration).SetEase(Ease.OutQuint));
-        sequence.Join(textDisplay.DOFade(0,moveDuration).SetEase(Ease.InQuint));
+        sequence.Join(textDisplay.DOFade(0, moveDuration).SetEase(Ease.InQuint));
         sequence.OnComplete(() => SelfDestroy()).SetLink(gameObject);
     }
 

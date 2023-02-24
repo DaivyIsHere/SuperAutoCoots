@@ -14,14 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponSprite: {fileID: -579906903, guid: 78ff80db6570ee74e8c8934fe4d85a33, type: 3}
   description: This is a knife.
-  LVdamage: 020000000200000002000000
+  LVdamage: 030000000600000009000000
   LVmaxDurability: 030000000300000003000000
   LVmovementVelocity:
-  - 10
   - 8
   - 8
-  LVuseTurn: 020000000200000002000000
-  LVknockbackForce:
+  - 8
+  LVknockbackMult:
   - 1
   - 1
   - 1
@@ -29,6 +28,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  LVuseTurn: 020000000200000002000000
   LVsize:
   - 1
   - 1
@@ -42,13 +42,14 @@ MonoBehaviour:
   - 1
   - 1
   projectilePenetrate: 1
+  projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
+  projectileSpriteOverride: {fileID: 0}
+  spawnOffset: {x: 0, y: 0}
+  spawnRotZ: 0
+  spawnVelocity: {x: 0, y: 0}
+  worldSpaceSpawn: 0
   durability: 3
   totalExp: 0
   additionalDamage: 0
   additionalDurability: 0
   additionalVelocity: 0
-  projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
-  spawnOffset: {x: 0, y: 0}
-  spawnRotZ: 0
-  spawnVelocity: {x: 0, y: 0}
-  worldSpaceSpawn: 0
