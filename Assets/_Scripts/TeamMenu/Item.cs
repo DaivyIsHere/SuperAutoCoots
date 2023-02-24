@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler
+public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public WeaponData weaponData;
     public ItemSlot slot;
@@ -27,7 +27,7 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
-    void Start()
+    protected virtual void Start()
     {
         canvas = TeamBuildManager.instance.mainCanvas;
         if (weaponData)
@@ -37,7 +37,7 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         }
     }
 
-    public void UpdateStatsDisplay()
+    public virtual void UpdateStatsDisplay()
     {
         damageDisplay.text = weaponData.damage.ToString();
         durabilityDisplay.text = weaponData.maxDurability.ToString();
@@ -46,6 +46,7 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public void OnBeginDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = false;
+        transform.SetAsLastSibling();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -82,8 +83,4 @@ public class Item : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         isSelected = false;
     }
 
-    public virtual void OnPointerEnter(PointerEventData eventData)
-    {
-        //ItemInfoDisplay.instance.ShowInfo(this);
-    }
 }

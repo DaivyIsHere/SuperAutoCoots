@@ -29,6 +29,14 @@ public class PlayerItem : Item, IDropHandler
                 SwapSlotWithItem((PlayerItemSlot)this.slot, (PlayerItemSlot)itemDropped.slot);
             }
         }
+        else if (eventData.pointerDrag.GetComponent<UpgradeItem>())//need to check before shop item cause upgradeItem inherits from shopItem
+        {
+            //Check can buy
+            if (TeamBuildManager.instance.BuyWeapon(eventData.pointerDrag.GetComponent<UpgradeItem>()))
+            {
+                UpgradeItem(eventData.pointerDrag.GetComponent<UpgradeItem>());
+            }
+        }
         else if (eventData.pointerDrag.GetComponent<ShopItem>())
         {
             //Upgrade
@@ -86,6 +94,15 @@ public class PlayerItem : Item, IDropHandler
             ((ShopItemSlot)mergeItem.slot).item = null;
         }
         Destroy(mergeItem.gameObject);
+        UpdateStatsDisplay();
+    }
+
+    public void UpgradeItem(UpgradeItem upgradeItem)
+    {
+        weaponData.additionalDamage += upgradeItem.upgradeData.bonusDamage;
+        weaponData.additionalDurability += upgradeItem.upgradeData.bonusDurability;
+        weaponData.additionalVelocity += upgradeItem.upgradeData.bonusVelocity;
+        Destroy(upgradeItem.gameObject);
         UpdateStatsDisplay();
     }
 

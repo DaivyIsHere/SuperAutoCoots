@@ -15,33 +15,42 @@ public class BattleManager : Singleton<BattleManager>
     public UnitController leftUnit;
     public UnitController rightUnit;
 
-    //[Header("Weapons")]
-    //public PlayerTeamData leftTeamData;
-    //public PlayerTeamData rightTeamData;
-    //public List<WeaponData> leftDefaultWeapons;
-    //public List<WeaponData> rightDefaultWeapons;
-
     void Start()
     {
-        //Left
-        foreach (var w in PlayerTeamManager.instance.weapons)
-            leftUnit.allWeapons.Add(w.GetWeaponDataNewInstance());
-        leftUnit.currentWeapon = leftUnit.allWeapons[0];
-        leftUnit.unitWeaponDisplay.IniAllWeapons();
+        SetUpPlayerTeam();//Left
+        SetUpEnemyTeam();//Right
 
-        //Right //TODO enemy weapons
-        TeamWeaponData teamWeaponData = new TeamWeaponData("Spear", 0);
-        rightUnit.allWeapons.Add(Instantiate(teamWeaponData.GetWeaponDataOriginal()));
-        // foreach (var w in PlayerTeamManager.instance.weapons) 
-        //     rightUnit.allWeapons.Add(Instantiate(w.GetWeaponData()));
-        rightUnit.currentWeapon = rightUnit.allWeapons[0];
-        rightUnit.unitWeaponDisplay.IniAllWeapons();
+        //Save Player Team to StageData
+        StageManager.instance.CollectPlayerTeamData();//We collect here because we dont want to fight ourself
     }
 
     public void StartBattle()
     {
         isRunning = true;
         OnTurnChange?.Invoke(BattleSide.Left);
+    }
+
+    public void SetUpPlayerTeam()
+    {
+        foreach (var w in PlayerDataManager.instance.teamData.weapons)
+            leftUnit.allWeapons.Add(w.GetWeaponDataNewInstance());
+        leftUnit.currentWeapon = leftUnit.allWeapons[0];
+        leftUnit.unitWeaponDisplay.IniAllWeapons();
+    }
+
+    public void SetUpEnemyTeam()
+    {
+        StageData stageData = StageManager.instance.allStageData.GetStageDataByStage(PlayerDataManager.instance.stage);
+        if(stageData == null)
+        {
+            Debug.LogError("NO STAGE DATA FOR STAGE : " + PlayerDataManager.instance.stage);
+            return;
+        }
+        TeamData randomTeam = stageData.GetRandomTeamData();
+        foreach (var w in randomTeam.weapons)
+            rightUnit.allWeapons.Add(w.GetWeaponDataNewInstance());
+        rightUnit.currentWeapon = rightUnit.allWeapons[0];
+        rightUnit.unitWeaponDisplay.IniAllWeapons();
     }
 
     public void ChangeTurn()
@@ -67,7 +76,7 @@ public class BattleManager : Singleton<BattleManager>
         {
             //player lose
             Debug.LogWarning("YOU LOSE!!");
-            PlayerTeamManager.instance.lives -= 1;
+            PlayerDataManager.instance.lives -= 1;
         }
         else if (side == BattleSide.Right)
         {
@@ -75,24 +84,25 @@ public class BattleManager : Singleton<BattleManager>
             Debug.LogWarning("YOU WIN!!");
         }
 
-        StartCoroutine(EndBattleAnimation());
+        StartCoroutine(EndBattleAnimation(side));
     }
 
-    private IEnumerator EndBattleAnimation()
+    private IEnumerator EndBattleAnimation(BattleSide side)
     {
-        if (PlayerTeamManager.instance.lives <= 0)
-        {
-            yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f);
+        if(side == BattleSide.Left)
             Popup.instance.DisplayMsg("YOU LOSE", 1, 2);
-            yield return new WaitForSeconds(2.5f);
+        else if (side == BattleSide.Right)
+            Popup.instance.DisplayMsg("YOU WIN", 1, 2);
+        yield return new WaitForSeconds(2.5f);
+
+        if (PlayerDataManager.instance.lives <= 0)
+        {
             BlackFade.instance.FadeTransition(() => SceneManager.LoadScene("GameOver"));
         }
         else
         {
-            yield return new WaitForSeconds(1f);
-            Popup.instance.DisplayMsg("YOU WIN", 1, 2);
-            yield return new WaitForSeconds(2.5f);
-            PlayerTeamManager.instance.level += 1;
+            PlayerDataManager.instance.stage += 1;
             BlackFade.instance.FadeTransition(() => SceneManager.LoadScene("TeamBuilding"));
         }
 

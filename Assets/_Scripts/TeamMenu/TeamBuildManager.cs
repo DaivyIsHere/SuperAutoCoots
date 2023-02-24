@@ -20,8 +20,10 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
     [Header("ItemSlots")]
     public List<PlayerItemSlot> playerSlots;
     public List<ShopItemSlot> shopSlots;
+    public List<ShopItemSlot> upgradeSlots;
     public GameObject playerItemPref;
     public GameObject shopItemPref;
+    public GameObject upgradeItemPref;
     public Transform itemContainer;
 
     [Header("PlayerData")]
@@ -30,10 +32,12 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
     [Header("Const")]
     public int startGold = 10;
     public int weaponPrice = 3;
+    public int upgradePrice = 3;
     public int rollPrice = 1;
 
     [Header("AllWeapon")]
     public List<WeaponData> allWeapon;
+    public List<UpgradeData> allUpgrades;
 
     public List<Item> allSelectedItem;
 
@@ -45,9 +49,11 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
         sellLockBtn.onClick.AddListener(OnClickSellLockButton);
 
         playerGold = startGold;
-        playerLivesText.text = "Lives : " + PlayerTeamManager.instance.lives.ToString();
+        playerLivesText.text = "Lives : " + PlayerDataManager.instance.lives.ToString();
         allWeapon.AddRange(Resources.LoadAll<WeaponData>("_SO/WeaponData"));
+        allUpgrades.AddRange(Resources.LoadAll<UpgradeData>("_SO/UpgradeData"));
         IniAllPlayerWeapon();
+        IniAllPlayerLockedShopItem();
         RerollShopItems();
     }
 
@@ -67,12 +73,36 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
     public void IniAllPlayerWeapon()
     {
         Canvas.ForceUpdateCanvases();
-        foreach (var w in PlayerTeamManager.instance.weapons)
+        foreach (var w in PlayerDataManager.instance.teamData.weapons)
         {
             PlayerItem newItem = Instantiate(playerItemPref, playerSlots[w.currentSlotIndex].transform.position, Quaternion.identity, itemContainer).GetComponent<PlayerItem>();
             newItem.weaponData = w.GetWeaponDataNewInstance();
             newItem.slot = playerSlots[w.currentSlotIndex];
             playerSlots[w.currentSlotIndex].item = newItem;
+        }
+    }
+
+    public void IniAllPlayerLockedShopItem()
+    {
+        Canvas.ForceUpdateCanvases();
+        ItemDatabase database = Resources.Load<ItemDatabase>("_SO/ItemDatabase");
+        foreach (KeyValuePair<int, string> entry in PlayerDataManager.instance.lockedShopWeapon)
+        {
+            ShopItem newItem = Instantiate(shopItemPref, shopSlots[entry.Key].transform.position, Quaternion.identity, itemContainer).GetComponent<ShopItem>();
+            newItem.slot =  shopSlots[entry.Key];
+            shopSlots[entry.Key].item = newItem;
+            newItem.weaponData = database.weaponDic[entry.Value];
+            newItem.isLocked = true;
+            newItem.UpdateLockDisplay();
+        }
+        foreach (KeyValuePair<int, string> entry in PlayerDataManager.instance.lockedShopUpgrade)
+        {
+            UpgradeItem newItem = Instantiate(upgradeItemPref, upgradeSlots[entry.Key].transform.position, Quaternion.identity, itemContainer).GetComponent<UpgradeItem>();
+            newItem.slot =  upgradeSlots[entry.Key];
+            upgradeSlots[entry.Key].item = newItem;
+            newItem.upgradeData = database.upgradeDic[entry.Value];
+            newItem.isLocked = true;
+            newItem.UpdateLockDisplay();
         }
     }
 
@@ -83,9 +113,7 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
         {
             //Check Lock
             if (slot.item && slot.item.isLocked)
-            {
                 continue;
-            }
 
             //Clear
             if (slot.item)
@@ -102,6 +130,42 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
             int rng = Random.Range(0, allWeapon.Count);
             newItem.weaponData = allWeapon[rng];
         }
+        foreach (var slot in upgradeSlots)
+        {
+            //Check Lock
+            if (slot.item && slot.item.isLocked)
+                continue;
+
+            //Clear
+            if (slot.item)
+            {
+                Destroy(slot.item.gameObject);
+                slot.item = null;
+            }
+            //Add
+            UpgradeItem newItem = Instantiate(upgradeItemPref, slot.transform.position, Quaternion.identity, itemContainer).GetComponent<UpgradeItem>();
+            newItem.slot = slot;
+            slot.item = newItem;
+
+            //Random upgradeData
+            int rng = Random.Range(0, allUpgrades.Count);
+            newItem.upgradeData = allUpgrades[rng];
+        }
+    }
+
+    public bool PlayerHasWeapon()
+    {
+        int totalWeaponCount = 0;
+        foreach (var slot in playerSlots)
+        {
+            if (slot.item)
+                totalWeaponCount += 1;
+        }
+
+        if (totalWeaponCount <= 0)
+            return false;
+        else
+            return true;
     }
 
     public bool BuyWeapon(ShopItem item)
@@ -114,12 +178,56 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
         return false;
     }
 
+    public bool BuyUpgrade(UpgradeItem item)
+    {
+        if (playerGold >= upgradePrice)
+        {
+            playerGold -= upgradePrice;
+            return true;
+        }
+        return false;
+    }
+
     public void DeselectAllSelectedItems()
     {
         for (int i = allSelectedItem.Count - 1; i >= 0; i--)
         {
             allSelectedItem[i].OnDeselect();
             allSelectedItem.Remove(allSelectedItem[i]);
+        }
+    }
+
+    public void SavePlayerTeam()
+    {
+        PlayerDataManager.instance.teamData.weapons.Clear();
+        for (int i = 0; i < playerSlots.Count; i++)
+        {
+            if (playerSlots[i].item)
+            {
+                TeamWeaponData teamWeaponData = new TeamWeaponData(playerSlots[i].item.weaponData, i);//playerSlots[i].item.weaponData.GetOriginalName(), i);
+                PlayerDataManager.instance.teamData.weapons.Add(teamWeaponData);
+            }
+        }
+    }
+
+    public void SavePlayerLockedShopItem()
+    {
+        PlayerDataManager.instance.lockedShopWeapon.Clear();
+        PlayerDataManager.instance.lockedShopUpgrade.Clear();
+
+        for (int i = 0; i < shopSlots.Count; i++)
+        {
+            if (shopSlots[i].item && shopSlots[i].item.isLocked)
+            {
+                PlayerDataManager.instance.lockedShopWeapon.Add(i, shopSlots[i].item.weaponData.name);
+            }
+        }
+        for (int i = 0; i < upgradeSlots.Count; i++)
+        {
+            if (upgradeSlots[i].item && upgradeSlots[i].item.isLocked)
+            {
+                PlayerDataManager.instance.lockedShopUpgrade.Add(i, ((UpgradeItem)upgradeSlots[i].item).upgradeData.name);
+            }
         }
     }
 
@@ -177,30 +285,22 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
 
     public void OnClickNextBattle()
     {
-        int totalWeaponCount = 0;
-        foreach (var slot in playerSlots)
-        {
-            if (slot.item)
-                totalWeaponCount += 1;
-        }
-
-        if (totalWeaponCount <= 0)
+        //Check has weapon
+        if (!PlayerHasWeapon())
         {
             Popup.instance.DisplayPopup("Drag a weapon from the shop to your team.", 1f, 1f);
             return;
         }
 
-        //save team
-        PlayerTeamManager.instance.weapons.Clear();
-        for (int i = 0; i < playerSlots.Count; i++)
-        {
-            if (playerSlots[i].item)
-            {
-                TeamWeaponData teamWeaponData = new TeamWeaponData(playerSlots[i].item.weaponData,i);//playerSlots[i].item.weaponData.GetOriginalName(), i);
-                PlayerTeamManager.instance.weapons.Add(teamWeaponData);
-            }
-        }
+        //Save Player team
+        SavePlayerTeam();
+
+        //Save Locked ShopItems
+        SavePlayerLockedShopItem();
+
+        //To Battle Scene
         nextBattleBtn.interactable = false;
         BlackFade.instance.FadeTransition(() => SceneManager.LoadScene("Battle"));
     }
+
 }

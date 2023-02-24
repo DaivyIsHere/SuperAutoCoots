@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PlayerTeamManager : PersistentSingleton<PlayerTeamManager>
+public class PlayerDataManager : PersistentSingleton<PlayerDataManager>
 {
-    public List<TeamWeaponData> weapons;
+    public int stage = 1;
     public int lives = 3;
-    public int level = 1;
+    public TeamData teamData = new TeamData();
+    public Dictionary<int, string> lockedShopWeapon = new Dictionary<int, string>();
+    public Dictionary<int, string> lockedShopUpgrade = new Dictionary<int, string>();
 }
 
 [Serializable]
@@ -39,13 +41,13 @@ public class TeamWeaponData
 
     public WeaponData GetWeaponDataOriginal()
     {
-        WeaponDatabase database = Resources.Load<WeaponDatabase>("_SO/WeaponDatabase");
+        ItemDatabase database = Resources.Load<ItemDatabase>("_SO/ItemDatabase");
         return database.weaponDic[weaponName];
     }
 
     public WeaponData GetWeaponDataNewInstance()
     {
-        WeaponDatabase database = Resources.Load<WeaponDatabase>("_SO/WeaponDatabase");
+        ItemDatabase database = Resources.Load<ItemDatabase>("_SO/ItemDatabase");
         WeaponData weaponData = MonoBehaviour.Instantiate(database.weaponDic[weaponName]);
         weaponData.totalExp = totalExp;
         weaponData.additionalDamage = additionalDamage;
@@ -55,4 +57,3 @@ public class TeamWeaponData
         return weaponData;
     }
 }
-

@@ -28,6 +28,14 @@ public class ItemInfoDisplay : Singleton<ItemInfoDisplay>
             else if (item.weaponData.level == 2)
                 extraInfoRightDisplay.text = "Level Maxed";
         }
+        else if (item is UpgradeItem)
+        {
+            UpgradeItem upgradeItem = (UpgradeItem)item;
+            itemSprite.sprite = upgradeItem.upgradeData.sprite;
+            infoDisplay.text = upgradeItem.upgradeData.description;
+            extraInfoLeftDisplay.text = "";
+            extraInfoRightDisplay.text = "Buy : 3 gold";
+        }
         else if (item is ShopItem)
         {
             itemSprite.sprite = item.weaponData.weaponSprite;

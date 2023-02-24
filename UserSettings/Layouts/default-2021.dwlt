@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 66
+  controlID: 130
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 82
+  controlID: 69
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 103
+  controlID: 42
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -425,9 +425,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 8a7c0100
-      m_LastClickedID: 97418
-      m_ExpandedIDs: 3279fdffb29efdff249ffdff9ea3fdff66d8fdffe664feff9c95feff9698feff3ca8feff48bffeff18c5feff20d8feff780affff980bffffe610ffff4a12ffffec35ffff1279ffff5879ffffd27affffcc83ffff4485fffff685ffff4286ffff8e86ffffae8dffff9694ffffe294ffff2e95ffffdc95ffff7e9bffffe49bffff509dffff9c9dffffb8a7ffffbcacffff28b3ffffa4b4ffff66cbffffb2cbfffff8dcffff0ce1ffff16e1ffff58e1ffff2efbfffff4ffffff14990000f09b00002cc4000058fe000060fe0000881e01008c1f01009e220100ee220100fc2401009e25010038550100a85501002a6d0100506d0100686d01009c7c0100d07c0100327d0100447d0100587d01000c8b01001e8b01002c8b01004e8b01005e8b0100728b0100dc3002001c350200
+      m_SelectedIDs: 44760000
+      m_LastClickedID: 0
+      m_ExpandedIDs: e471feff229dfeff382bffff7e2bffffc42bffff6e2cffffe276ffff3e7fffffac85ffff2efbfffff4ffffff9a610000bc610000d0610000da610000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -492,22 +492,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Prefabs/TeamBuilding
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Resources/Prefabs/TeamBuilding
+  - Assets/Scenes
   m_LastFoldersGridSize: 16
   m_LastProjectPath: E:\Github\SuperAutoCoots
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 23.799988}
-    m_SelectedIDs: 7a630000
-    m_LastClickedID: 25466
-    m_ExpandedIDs: 000000005463000056630000586300005a6300005c6300005e63000060630000666300006a63000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 02640000
+    m_LastClickedID: 25602
+    m_ExpandedIDs: 00000000e8630000ea630000ec630000ee630000f0630000f2630000f463000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -535,7 +535,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005463000056630000586300005a6300005c6300005e63000060630000
+    m_ExpandedIDs: 00000000e8630000ea630000ec630000ee630000f0630000f2630000f4630000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -566,18 +566,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c62300000000000020620000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: CreateStageHelper
+      m_OriginalName: CreateStageHelper
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 80334
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 8}
     m_CreateAssetUtility:
@@ -838,9 +838,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 966.48175, y: 468.36343, z: -0.7163784}
+    m_Target: {x: 1224.9811, y: 448.92807, z: 4.8954377}
     speed: 2
-    m_Value: {x: 966.48175, y: 468.36343, z: -0.7163784}
+    m_Value: {x: 1224.9811, y: 448.92807, z: 4.8954377}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -891,9 +891,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 53.502476
+    m_Target: 786.6111
     speed: 2
-    m_Value: 53.502476
+    m_Value: 786.6111
   m_Ortho:
     m_Target: 1
     speed: 2
