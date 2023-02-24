@@ -17,11 +17,24 @@ public class BattleManager : Singleton<BattleManager>
 
     void Start()
     {
+        leftUnit.allWeapons.Add(new TeamWeaponData("Knife", 0).GetWeaponDataNewInstance());
+        leftUnit.allWeapons.Add(new TeamWeaponData("Spear", 1).GetWeaponDataNewInstance());
+        leftUnit.currentWeapon = leftUnit.allWeapons[0];
+        leftUnit.unitWeaponDisplay.IniAllWeapons();
+
+        rightUnit.allWeapons.Add(new TeamWeaponData("Spear", 0).GetWeaponDataNewInstance());
+        rightUnit.allWeapons.Add(new TeamWeaponData("Knife", 1).GetWeaponDataNewInstance());
+        rightUnit.currentWeapon = rightUnit.allWeapons[0];
+        rightUnit.unitWeaponDisplay.IniAllWeapons();
+        
+        //TODO you need these instead
+        /*
         SetUpPlayerTeam();//Left
         SetUpEnemyTeam();//Right
 
         //Save Player Team to StageData
         StageManager.instance.CollectPlayerTeamData();//We collect here because we dont want to fight ourself
+        */
     }
 
     public void StartBattle()

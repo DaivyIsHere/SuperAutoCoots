@@ -152,15 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 048851114093bb84fa49ad56108b5260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - weaponName: Knife
-    totalExp: 0
-    additionalAttack: 0
-    additionalDurability: 0
-    additionalVelocity: 0
-    currentSlotIndex: 0
+  stage: 1
   lives: 3
-  level: 1
+  teamData:
+    weapons: []
 --- !u!4 &51546986
 Transform:
   m_ObjectHideFlags: 0
@@ -2329,7 +2324,6 @@ MonoBehaviour:
   weaponSpacingY: 2
   weaponControllers: []
   weaponPref: {fileID: 1146798774400361545, guid: 2c1982d15a325a046967ba9a8f0b8d75, type: 3}
-  weaponIndicator: {fileID: 1853201851}
   totalHealthDisplay: {fileID: 2125414954}
   totalHealthText: {fileID: 1172053444}
   currentWeaponDamageText: {fileID: 265362337}
@@ -2656,10 +2650,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitController: {fileID: 1365740409}
   unitSprite: {fileID: 2086691886}
-  idleSprite: {fileID: 2104557190, guid: d9b920fe4781ef441952e8285dbda516, type: 3}
-  attackSprite: {fileID: -1414223610, guid: d9b920fe4781ef441952e8285dbda516, type: 3}
-  parrySprite: {fileID: -1622976613, guid: d9b920fe4781ef441952e8285dbda516, type: 3}
-  knockdownSprite: {fileID: -1074288936, guid: d9b920fe4781ef441952e8285dbda516, type: 3}
+  idleSprite: {fileID: 1938068863, guid: b9e30e1775096024fb5e9c8842005486, type: 3}
+  attackSprite: {fileID: -515019920, guid: b9e30e1775096024fb5e9c8842005486, type: 3}
+  parrySprite: {fileID: -840521228, guid: b9e30e1775096024fb5e9c8842005486, type: 3}
+  knockdownSprite: {fileID: -707717827, guid: b9e30e1775096024fb5e9c8842005486, type: 3}
 --- !u!1 &1370546261
 GameObject:
   m_ObjectHideFlags: 0
@@ -3531,7 +3525,6 @@ MonoBehaviour:
   weaponSpacingY: 2
   weaponControllers: []
   weaponPref: {fileID: 1146798774400361545, guid: 2c1982d15a325a046967ba9a8f0b8d75, type: 3}
-  weaponIndicator: {fileID: 640395637}
   totalHealthDisplay: {fileID: 1548977773}
   totalHealthText: {fileID: 656684219}
   currentWeaponDamageText: {fileID: 1960985948}
@@ -4268,10 +4261,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitController: {fileID: 2099792268}
   unitSprite: {fileID: 276909879}
-  idleSprite: {fileID: 2104557190, guid: d9b920fe4781ef441952e8285dbda516, type: 3}
-  attackSprite: {fileID: -1414223610, guid: d9b920fe4781ef441952e8285dbda516, type: 3}
-  parrySprite: {fileID: -1622976613, guid: d9b920fe4781ef441952e8285dbda516, type: 3}
-  knockdownSprite: {fileID: -1074288936, guid: d9b920fe4781ef441952e8285dbda516, type: 3}
+  idleSprite: {fileID: 1938068863, guid: b9e30e1775096024fb5e9c8842005486, type: 3}
+  attackSprite: {fileID: -515019920, guid: b9e30e1775096024fb5e9c8842005486, type: 3}
+  parrySprite: {fileID: -840521228, guid: b9e30e1775096024fb5e9c8842005486, type: 3}
+  knockdownSprite: {fileID: -707717827, guid: b9e30e1775096024fb5e9c8842005486, type: 3}
 --- !u!1 &2125414952
 GameObject:
   m_ObjectHideFlags: 0

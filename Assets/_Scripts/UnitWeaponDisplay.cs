@@ -12,7 +12,7 @@ public class UnitWeaponDisplay : MonoBehaviour
     public float weaponSpacingY;
     public List<WeaponController> weaponControllers;
     public GameObject weaponPref;
-    public Transform weaponIndicator;
+    //public Transform weaponIndicator;
     [Header("UI")]
     public Image totalHealthDisplay;
     public TMP_Text totalHealthText;
@@ -22,7 +22,7 @@ public class UnitWeaponDisplay : MonoBehaviour
 
     private void Start()
     {
-        unitController.OnWeaponChange += UpdateWeaponIndicator;
+        //unitController.OnWeaponChange += UpdateWeaponIndicator;
         unitController.OnWeaponRemove += RemoveWeaponController;
         unitController.OnWeaponAttack += UpdateCurrentWeaponInfo;
     }
@@ -56,7 +56,7 @@ public class UnitWeaponDisplay : MonoBehaviour
             weaponControllers.Add(newWeapon);
         }
         AlignAllWeapons();
-        UpdateWeaponIndicator();
+        //UpdateWeaponIndicator();
         UpdateCurrentWeaponInfo();
         foreach (var w in weaponControllers)
         {
@@ -85,21 +85,20 @@ public class UnitWeaponDisplay : MonoBehaviour
         currentWeaponDamageText.text = unitController.currentWeapon ? unitController.currentWeapon.damage.ToString() : "";
     }
 
-    public void UpdateWeaponIndicator()
-    {
-        int currentIndex = unitController.GetCurrentWeaponIndex();
-        weaponIndicator.DOMove(GetWeaponPositionByIndex(currentIndex), 0.5f).SetEase(Ease.InOutSine).SetLink(weaponIndicator.gameObject);
-    }
+    // public void UpdateWeaponIndicator()
+    // {
+    //     int currentIndex = unitController.GetCurrentWeaponIndex();
+    //     weaponIndicator.DOMove(GetWeaponPositionByIndex(currentIndex), 0.5f).SetEase(Ease.InOutSine).SetLink(weaponIndicator.gameObject);
+    // }
 
     public void UpdateCurrentWeaponInfo()
     {
         int currentIndex = unitController.GetCurrentWeaponIndex();
-        for (int i = 0; i < weaponControllers.Count; i++)
-        {
-            if (i == currentIndex)
-                weaponControllers[i].UpdateCurrentWeaponInfo(true, unitController.currentWeaponTurn);
-            else
-                weaponControllers[i].UpdateCurrentWeaponInfo(false, unitController.currentWeaponTurn);
-        }
+        int nextIndex = unitController.GetNextWeaponIndex();
+
+        weaponControllers[currentIndex].UpdateTurnUnit(unitController.currentWeaponTurn);
+
+        if (unitController.currentWeaponTurn >= unitController.currentWeapon.useTurn)
+            weaponControllers[nextIndex].UpdateTurnUnit(0);
     }
 }

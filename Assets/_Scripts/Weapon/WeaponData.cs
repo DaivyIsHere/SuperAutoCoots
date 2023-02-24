@@ -12,17 +12,24 @@ public class WeaponData : ScriptableObject
     public int damage { get { return LVdamage[level] + additionalDamage; } }
     public int maxDurability { get { return LVmaxDurability[level] + additionalDurability; } }
     public float movementVelocity { get { return LVmovementVelocity[level] + additionalVelocity; } }
+    public int useTurn { get { return LVuseTurn[level]; } }
+    public float knockbackForce { get { return LVknockbackForce[level]; } }
     public float knockBackResis { get { return LVknockBackResis[level]; } }
     public float size { get { return LVsize[level]; } }
-    public int useTurn { get { return LVuseTurn[level]; } }
+    public float backStabDamageMult { get { return LVbackStabDamageMult[level]; } }
+    public float defaultLifeTime { get { return LVprojectileLifeTime[level]; } }
 
     [Header("Level Stats")]
     public List<int> LVdamage = new List<int>() { 1, 1, 1 };
     public List<int> LVmaxDurability = new List<int>() { 5, 5, 5 };
     public List<float> LVmovementVelocity = new List<float>() { 10f, 10f, 10f };//magnitude
+    public List<int> LVuseTurn = new List<int>() { 2, 2, 2 };//how many turns before switching to the next weapon
+    [Range(1f, 3f)] public List<float> LVknockbackForce = new List<float>() { 1, 1, 1 };//velocity.magnitude multiply by this
     [Range(0f, 1f)] public List<float> LVknockBackResis = new List<float>() { 0, 0, 0 };
     public List<float> LVsize = new List<float>() { 1, 1, 1 };
-    public List<int> LVuseTurn = new List<int>() { 2, 2, 2 };//how many turns before switching to the next weapon
+    public List<float> LVbackStabDamageMult = new List<float>() { 1, 1, 1 };
+    public List<float> LVprojectileLifeTime = new List<float>() { 1, 1, 1 };
+    public bool projectilePenetrate = true;
 
     [Header("Dynamic")]
     public int durability;

@@ -101,6 +101,18 @@ public class UnitController : MonoBehaviour
         return -1;
     }
 
+    public int GetNextWeaponIndex()
+    {
+        int currentIndex = GetCurrentWeaponIndex();
+        int nextWeaponIndex;
+        if (currentIndex + 1 < allWeapons.Count)
+            nextWeaponIndex = currentIndex + 1;
+        else
+            nextWeaponIndex = 0;
+
+        return nextWeaponIndex;
+    }
+
     #region Turn
 
     private void OnTurnChange(BattleSide currentSide)

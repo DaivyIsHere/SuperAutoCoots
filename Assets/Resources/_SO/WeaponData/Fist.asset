@@ -10,21 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3601d7380d0ef8a4381b353b775c1fa0, type: 3}
-  m_Name: Knife
+  m_Name: Fist
   m_EditorClassIdentifier: 
-  weaponSprite: {fileID: -579906903, guid: 78ff80db6570ee74e8c8934fe4d85a33, type: 3}
-  description: This is a knife.
-  LVdamage: 020000000200000002000000
-  LVmaxDurability: 030000000300000003000000
+  weaponSprite: {fileID: 0}
+  description: 
+  LVdamage: 010000000100000001000000
+  LVmaxDurability: 050000000500000005000000
   LVmovementVelocity:
   - 10
-  - 8
-  - 8
-  LVuseTurn: 020000000200000002000000
-  LVknockbackForce:
-  - 1
-  - 1
-  - 1
+  - 10
+  - 10
   LVknockBackResis:
   - 0
   - 0
@@ -33,21 +28,13 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  LVbackStabDamageMult:
-  - 1
-  - 1
-  - 1
-  LVprojectileLifeTime:
-  - 1
-  - 1
-  - 1
-  projectilePenetrate: 1
-  durability: 3
+  LVuseTurn: 020000000200000002000000
+  durability: 0
   totalExp: 0
   additionalDamage: 0
   additionalDurability: 0
   additionalVelocity: 0
-  projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
+  projectileData: {fileID: 0}
   spawnOffset: {x: 0, y: 0}
   spawnRotZ: 0
   spawnVelocity: {x: 0, y: 0}
