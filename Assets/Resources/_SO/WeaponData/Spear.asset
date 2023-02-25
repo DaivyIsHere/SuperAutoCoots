@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Spear
   m_EditorClassIdentifier: 
   weaponSprite: {fileID: 1683656628, guid: 78ff80db6570ee74e8c8934fe4d85a33, type: 3}
-  description: This is a spear.
+  description: Charge!! Longer reach than other weapons. Gain more reach when level
+    up.
   LVdamage: 010000000100000001000000
   LVmaxDurability: 050000000500000005000000
   LVmovementVelocity:

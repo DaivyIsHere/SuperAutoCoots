@@ -12,6 +12,7 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
     public Canvas mainCanvas;
     public TMP_Text playerGoldText;
     public TMP_Text playerLivesText;
+    public TMP_Text playerStageText;
     public Button sellLockBtn;
     public TMP_Text sellLockText;
     public Button rerollBtn;
@@ -50,6 +51,7 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
 
         playerGold = startGold;
         playerLivesText.text = "Lives : " + PlayerDataManager.instance.lives.ToString();
+        playerStageText.text = "Stage : " + PlayerDataManager.instance.stage.ToString();
         allWeapon.AddRange(Resources.LoadAll<WeaponData>("_SO/WeaponData"));
         allUpgrades.AddRange(Resources.LoadAll<UpgradeData>("_SO/UpgradeData"));
         IniAllPlayerWeapon();

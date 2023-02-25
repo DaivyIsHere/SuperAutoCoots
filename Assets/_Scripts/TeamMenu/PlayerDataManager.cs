@@ -10,6 +10,15 @@ public class PlayerDataManager : PersistentSingleton<PlayerDataManager>
     public TeamData teamData = new TeamData();
     public Dictionary<int, string> lockedShopWeapon = new Dictionary<int, string>();
     public Dictionary<int, string> lockedShopUpgrade = new Dictionary<int, string>();
+
+    public void ResetData() 
+    {
+        stage = 1;
+        lives = 3;
+        teamData = new TeamData();
+        lockedShopWeapon = new Dictionary<int, string>();
+        lockedShopUpgrade = new Dictionary<int, string>();
+    }
 }
 
 [Serializable]

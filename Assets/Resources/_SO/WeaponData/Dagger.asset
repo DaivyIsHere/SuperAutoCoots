@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Dagger
   m_EditorClassIdentifier: 
   weaponSprite: {fileID: -918404683, guid: 78ff80db6570ee74e8c8934fe4d85a33, type: 3}
-  description: 
-  LVdamage: 020000000200000002000000
-  LVmaxDurability: 040000000400000004000000
+  description: Attack in a deceitful manner. Deal more damage when attack from behind.
+  LVdamage: 040000000400000004000000
+  LVmaxDurability: 010000000100000001000000
   LVmovementVelocity:
-  - 8
-  - 8
-  - 8
+  - 7
+  - 7
+  - 7
   LVknockbackMult:
   - 1
   - 1
@@ -28,7 +28,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  LVuseTurn: 020000000200000002000000
+  LVuseTurn: 010000000100000001000000
   LVsize:
   - 1
   - 1
@@ -50,7 +50,7 @@ MonoBehaviour:
   spawnScale: 1.2
   pflipX: 0
   worldSpaceSpawn: 0
-  durability: 4
+  durability: 1
   totalExp: 0
   additionalDamage: 0
   additionalDurability: 0

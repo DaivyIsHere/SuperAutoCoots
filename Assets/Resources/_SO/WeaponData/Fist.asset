@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Fist
   m_EditorClassIdentifier: 
   weaponSprite: {fileID: 1267176903, guid: 78ff80db6570ee74e8c8934fe4d85a33, type: 3}
-  description: 
+  description: A soft way to attack opponent, increace knockback and durability when
+    level up.
   LVdamage: 010000000100000001000000
   LVmaxDurability: 040000000600000009000000
   LVmovementVelocity:
@@ -28,7 +29,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  LVuseTurn: 020000000200000002000000
+  LVuseTurn: 030000000300000003000000
   LVsize:
   - 1
   - 1

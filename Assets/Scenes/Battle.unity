@@ -803,8 +803,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4408131
-  m_fontColor: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 0}
+    rgba: 4736668
+  m_fontColor: {r: 0.6132076, g: 0.2742079, b: 0.28392583, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2323,7 +2323,8 @@ MonoBehaviour:
   firstWeaponLocation: {fileID: 1392384772}
   weaponSpacingY: 2
   weaponControllers: []
-  weaponPref: {fileID: 1146798774400361545, guid: 2c1982d15a325a046967ba9a8f0b8d75, type: 3}
+  weaponPrefLeft: {fileID: 1146798774400361545, guid: 2c1982d15a325a046967ba9a8f0b8d75, type: 3}
+  weaponPrefRight: {fileID: 2472034375451795119, guid: 7b62136b7bcdad84f989bf55c48a4e56, type: 3}
   totalHealthDisplay: {fileID: 2125414954}
   totalHealthText: {fileID: 1172053444}
   currentWeaponDamageText: {fileID: 265362337}
@@ -3524,7 +3525,8 @@ MonoBehaviour:
   firstWeaponLocation: {fileID: 589606325}
   weaponSpacingY: 2
   weaponControllers: []
-  weaponPref: {fileID: 1146798774400361545, guid: 2c1982d15a325a046967ba9a8f0b8d75, type: 3}
+  weaponPrefLeft: {fileID: 1146798774400361545, guid: 2c1982d15a325a046967ba9a8f0b8d75, type: 3}
+  weaponPrefRight: {fileID: 2472034375451795119, guid: 7b62136b7bcdad84f989bf55c48a4e56, type: 3}
   totalHealthDisplay: {fileID: 1548977773}
   totalHealthText: {fileID: 656684219}
   currentWeaponDamageText: {fileID: 1960985948}

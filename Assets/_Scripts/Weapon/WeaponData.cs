@@ -8,6 +8,7 @@ public class WeaponData : ScriptableObject
 {
     [Header("Info")]
     public Sprite weaponSprite;
+    [Multiline(5)]
     public string description;
 
     public int damage { get { return LVdamage[level] + additionalDamage; } }

@@ -11,7 +11,8 @@ public class UnitWeaponDisplay : MonoBehaviour
     public Transform firstWeaponLocation;
     public float weaponSpacingY;
     public List<WeaponController> weaponControllers;
-    public GameObject weaponPref;
+    public GameObject weaponPrefLeft;
+    public GameObject weaponPrefRight;
     //public Transform weaponIndicator;
     [Header("UI")]
     public Image totalHealthDisplay;
@@ -51,7 +52,7 @@ public class UnitWeaponDisplay : MonoBehaviour
     {
         for (int i = 0; i < unitController.allWeapons.Count; i++)
         {
-            WeaponController newWeapon = Instantiate(weaponPref, GetWeaponPositionByIndex(i), Quaternion.identity, transform).GetComponent<WeaponController>();
+            WeaponController newWeapon = Instantiate(unitController.side == BattleSide.Left ? weaponPrefLeft : weaponPrefRight, GetWeaponPositionByIndex(i), Quaternion.identity, transform).GetComponent<WeaponController>();
             newWeapon.weaponData = unitController.allWeapons[i];
             weaponControllers.Add(newWeapon);
         }
