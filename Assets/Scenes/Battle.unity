@@ -1544,7 +1544,7 @@ GameObject:
   - component: {fileID: 897111551}
   - component: {fileID: 897111553}
   - component: {fileID: 897111552}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LeftWall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3868,7 +3868,7 @@ GameObject:
   - component: {fileID: 2029994662}
   - component: {fileID: 2029994664}
   - component: {fileID: 2029994663}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RIghtWall
   m_TagString: Wall
   m_Icon: {fileID: 0}

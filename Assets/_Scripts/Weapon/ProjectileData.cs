@@ -10,4 +10,6 @@ public class ProjectileData : ScriptableObject
     public float backStabDamageMult = 1f;
     public bool penetrate = true;
     public float defaultLifeTime = 1f;
+    public float upthrowForce = 5f;
+    public bool effectByGravity = false;
 }

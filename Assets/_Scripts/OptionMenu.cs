@@ -17,15 +17,17 @@ public class OptionMenu : MonoBehaviour
         optionBtn.onClick.AddListener(ToggleMenu);
         closeBtn.onClick.AddListener(ToggleMenu);
         mainMenuBtn.onClick.AddListener(GoMainMenu);
-        
+
     }
 
     private void Start()
     {
         if (AudioManager.instance)
+        {
+            volumeSlider.value = PlayerPrefs.GetFloat("volume", 0.3f);
             volumeSlider.onValueChanged.AddListener(SetVolumeSetting);
-        volumeSlider.value = PlayerPrefs.GetFloat("volume", 0.3f);
-        AudioManager.instance.GetComponent<AudioSource>().volume = volumeSlider.value;
+            AudioManager.instance.GetComponent<AudioSource>().volume = volumeSlider.value;
+        }
     }
 
     public void SetVolumeSetting(float value)

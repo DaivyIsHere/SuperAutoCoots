@@ -20,6 +20,8 @@ public class WeaponData : ScriptableObject
     public float size { get { return LVsize[level]; } }
     public float backStabDamageMult { get { return LVbackStabDamageMult[level]; } }
     public float defaultLifeTime { get { return LVprojectileLifeTime[level]; } }
+    public float upthrowForce { get { return LVupthrowForce[level]; } }
+    public float jumpVelocity { get { return LVjumpVelocity[level]; } }
 
     //[Header("Level Stats")]
     [GUIColor(1, 0.6f, 0.4f)][LabelText("DMG")][HorizontalGroup("Basic Stats", LabelWidth = 20)] public List<int> LVdamage = new List<int>() { 1, 1, 1 };
@@ -31,6 +33,8 @@ public class WeaponData : ScriptableObject
     [LabelText("Size")][HorizontalGroup("Info", LabelWidth = 20)] public List<float> LVsize = new List<float>() { 1, 1, 1 };
     [LabelText("BackStab")] public List<float> LVbackStabDamageMult = new List<float>() { 1, 1, 1 };
     public List<float> LVprojectileLifeTime = new List<float>() { 1, 1, 1 };
+    public List<float> LVupthrowForce = new List<float>() { 5, 5, 5 };
+    public List<float> LVjumpVelocity = new List<float>() { 0, 0, 0 };
     public bool projectilePenetrate = true;
 
     [Header("Projectile")]
@@ -42,6 +46,9 @@ public class WeaponData : ScriptableObject
     public float spawnScale = 1;
     public bool pflipX = false;
     public bool worldSpaceSpawn = false;//spawn as unit's child or not
+    public bool effectByGravity = false;
+    public bool bounceOnGround = false;
+    public PhysicsMaterial2D bounceMat;
 
     [Header("Dynamic")]
     public int durability;
@@ -111,7 +118,7 @@ public class WeaponData : ScriptableObject
 
         Vector2 positionDiff = (BattleManager.instance.GetOpponentUnit(unit.side).transform.position - unit.transform.position).normalized;
         //unit.rb2d.AddForce(new Vector2(positionDiff.x, 0) * movementVelocity, ForceMode2D.Impulse);
-        unit.rb2d.velocity = new Vector2(positionDiff.x, 0) * movementVelocity;
+        unit.rb2d.velocity = (new Vector2(positionDiff.x, 0) * movementVelocity) + new Vector2(0, jumpVelocity);
         unit.FaceTowards(positionDiff.x);
     }
 
@@ -144,6 +151,7 @@ public class WeaponData : ScriptableObject
         {
             projectile.transform.eulerAngles = new Vector3(0, unitFacing == 1 ? 0 : 180, spawnRotZ);
             projectile.rb2d.isKinematic = false;
+            projectile.sprite.flipX = pflipX ? true : false;
         }
 
         projectile.rb2d.velocity = velocity;
@@ -156,9 +164,17 @@ public class WeaponData : ScriptableObject
         projectile.projectileData.backStabDamageMult = backStabDamageMult;
         projectile.projectileData.penetrate = projectilePenetrate;
         projectile.projectileData.defaultLifeTime = defaultLifeTime;
+        projectile.projectileData.upthrowForce = upthrowForce;
+        projectile.projectileData.effectByGravity = effectByGravity;
 
         projectile.sprite.sprite = projectileSpriteOverride ? projectileSpriteOverride : weaponSprite;
         projectile.sprite.transform.localScale = Vector3.one * spawnScale;
+        if (bounceOnGround)
+        {
+            CircleCollider2D collider2D = projectile.gameObject.AddComponent<CircleCollider2D>();
+            collider2D.radius = 0.3f;
+            collider2D.sharedMaterial = bounceMat;
+        }
     }
 
 }

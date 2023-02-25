@@ -15,8 +15,8 @@ TagManager:
   - PlayerGroundCollide
   - Player
   - Ground
-  - 
-  - 
+  - ProjectileGroundCollide
+  - Wall
   - 
   - 
   - 

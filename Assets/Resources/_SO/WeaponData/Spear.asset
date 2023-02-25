@@ -42,6 +42,14 @@ MonoBehaviour:
   - 1
   - 1
   - 1
+  LVupthrowForce:
+  - 5
+  - 5
+  - 5
+  LVjumpVelocity:
+  - 0
+  - 0
+  - 0
   projectilePenetrate: 1
   projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
   projectileSpriteOverride: {fileID: 0}

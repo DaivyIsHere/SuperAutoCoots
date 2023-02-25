@@ -15,22 +15,25 @@ public class ProjectileController : MonoBehaviour
     public int facing = 1;
 
     //*Const
-    private float defaultUpThrow = 5f;
     private float minVelocityKnockback = 5f;
     private float maxVelocityKnockback = 20f;
 
 
-    private void Awake() 
+    private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
     }
 
     void Start()
     {
-        if(!projectileData)
+        if (!projectileData)
             Debug.LogError("No ProjectileData Assigned.");
-            
+
         lifeTime = projectileData.defaultLifeTime;
+        if (projectileData.effectByGravity)
+            rb2d.gravityScale = 1;
+        else
+            rb2d.gravityScale = 0;
     }
 
     void Update()
@@ -40,10 +43,10 @@ public class ProjectileController : MonoBehaviour
         else
             Destroy(this.gameObject);
     }
-    
+
     private void DamageTarget(UnitController target)
     {
-        if(target.facing == facing)
+        if (target.facing == facing)
             target.TakeDamage(Mathf.RoundToInt(damage * projectileData.backStabDamageMult), owner);
         else
             target.TakeDamage(damage, owner);
@@ -52,12 +55,12 @@ public class ProjectileController : MonoBehaviour
     private void KnockBackTarget(UnitController target)
     {
         float velocityX = owner.rb2d.velocity.x;
-        if (velocityX > 0)
+        if (velocityX >= 0)
             velocityX = Mathf.Clamp(velocityX, minVelocityKnockback, maxVelocityKnockback);
         else
             velocityX = Mathf.Clamp(velocityX, -maxVelocityKnockback, -minVelocityKnockback);
         Vector2 knockbackVector = new Vector2(velocityX * projectileData.knockbackMult, 0);
-        knockbackVector.y = defaultUpThrow;//defualt upthrow
+        knockbackVector.y = projectileData.upthrowForce;//defualt upthrow
         target.ReceiveKnockback(knockbackVector);
     }
 
@@ -68,7 +71,7 @@ public class ProjectileController : MonoBehaviour
         //? Deal dmg
         DamageTarget(otherUnit);
 
-        if(!projectileData.penetrate)
+        if (!projectileData.penetrate)
             Destroy(this.gameObject);
 
         //dont collide with it again

@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3601d7380d0ef8a4381b353b775c1fa0, type: 3}
+  m_Name: King's Boot
+  m_EditorClassIdentifier: 
+  weaponSprite: {fileID: 1163025032, guid: 78ff80db6570ee74e8c8934fe4d85a33, type: 3}
+  description: A boot weared by the very famous fall king. Increace jump distance
+    when level up.
+  LVdamage: 020000000200000002000000
+  LVmaxDurability: 040000000400000004000000
+  LVmovementVelocity:
+  - 5
+  - 7
+  - 8
+  LVknockbackMult:
+  - 1.5
+  - 1.5
+  - 1.5
+  LVknockBackResis:
+  - 0
+  - 0
+  - 0
+  LVuseTurn: 020000000200000002000000
+  LVsize:
+  - 1
+  - 1
+  - 1
+  LVbackStabDamageMult:
+  - 1
+  - 1
+  - 1
+  LVprojectileLifeTime:
+  - 1
+  - 1
+  - 1
+  LVjumpVelocity:
+  - 5
+  - 5
+  - 5
+  projectilePenetrate: 1
+  projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
+  projectileSpriteOverride: {fileID: 0}
+  spawnOffset: {x: 0.3, y: -0.5}
+  spawnRotZ: 30
+  spawnVelocity: {x: 0, y: 0}
+  spawnScale: 1.2
+  pflipX: 1
+  worldSpaceSpawn: 0
+  durability: 4
+  totalExp: 0
+  additionalDamage: 0
+  additionalDurability: 0
+  additionalVelocity: 0

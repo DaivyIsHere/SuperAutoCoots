@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3601d7380d0ef8a4381b353b775c1fa0, type: 3}
+  m_Name: Fish
+  m_EditorClassIdentifier: 
+  weaponSprite: {fileID: -2002236880, guid: 78ff80db6570ee74e8c8934fe4d85a33, type: 3}
+  description: Fish swim. <br>Fish jump. <br>FIsh pog.
+  LVdamage: 020000000200000002000000
+  LVmaxDurability: 030000000300000003000000
+  LVmovementVelocity:
+  - -5
+  - -5
+  - -5
+  LVknockbackMult:
+  - 1
+  - 1
+  - 1
+  LVknockBackResis:
+  - 0
+  - 0
+  - 0
+  LVuseTurn: 020000000200000002000000
+  LVsize:
+  - 1
+  - 1
+  - 1
+  LVbackStabDamageMult:
+  - 1
+  - 1
+  - 1
+  LVprojectileLifeTime:
+  - 5
+  - 5
+  - 5
+  LVupthrowForce:
+  - 5
+  - 5
+  - 5
+  LVjumpVelocity:
+  - 0
+  - 0
+  - 0
+  projectilePenetrate: 0
+  projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
+  projectileSpriteOverride: {fileID: 0}
+  spawnOffset: {x: 0, y: 0}
+  spawnRotZ: 0
+  spawnVelocity: {x: 5, y: 7}
+  spawnScale: 1.5
+  pflipX: 1
+  worldSpaceSpawn: 1
+  effectByGravity: 1
+  bounceOnGround: 1
+  bounceMat: {fileID: 6200000, guid: 8aaae7b568b67f9498a20008c3abf849, type: 2}
+  durability: 3
+  totalExp: 0
+  additionalDamage: 0
+  additionalDurability: 0
+  additionalVelocity: 0

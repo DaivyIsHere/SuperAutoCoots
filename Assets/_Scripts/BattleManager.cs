@@ -17,9 +17,9 @@ public class BattleManager : Singleton<BattleManager>
 
     void Start()
     {
-        SetUpPlayerTeam();//Left
-        SetUpEnemyTeam();//Right
-        //TestBattle();
+        //SetUpPlayerTeam();//Left
+        //SetUpEnemyTeam();//Right
+        TestBattle();
 
         //? Disable On Webgl and just paste the component data to it, and hit build.
         //Save Player Team to StageData
@@ -35,9 +35,10 @@ public class BattleManager : Singleton<BattleManager>
 
     public void TestBattle()
     {
-        leftUnit.allWeapons.Add(new TeamWeaponData("Fist", 0).GetWeaponDataNewInstance());
-        leftUnit.allWeapons.Add(new TeamWeaponData("Dagger", 1).GetWeaponDataNewInstance());
-        leftUnit.allWeapons.Add(new TeamWeaponData("Spear", 1).GetWeaponDataNewInstance());
+        leftUnit.allWeapons.Add(new TeamWeaponData("Fish", 0).GetWeaponDataNewInstance());
+        leftUnit.allWeapons.Add(new TeamWeaponData("Lopunny's Costume", 0).GetWeaponDataNewInstance());
+        leftUnit.allWeapons.Add(new TeamWeaponData("King's Boot", 1).GetWeaponDataNewInstance());
+        leftUnit.allWeapons.Add(new TeamWeaponData("Magicbook but you can't read", 1).GetWeaponDataNewInstance());
         leftUnit.currentWeapon = leftUnit.allWeapons[0];
         leftUnit.unitWeaponDisplay.IniAllWeapons();
 
