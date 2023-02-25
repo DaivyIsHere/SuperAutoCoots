@@ -29,5 +29,6 @@ public class CreateStageHelper : MonoBehaviour
         PlayerDataManager.instance.stage += 1;
         TeamBuildManager.instance.RerollShopItems();
         TeamBuildManager.instance.playerGold = 10;
+        //TeamBuildManager.instance.playerGold = PlayerDataManager.instance.stage * 10 - PlayerDataManager.instance.teamData.weapons.Count;
     }
 }

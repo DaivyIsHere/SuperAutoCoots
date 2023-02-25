@@ -17,7 +17,7 @@ public class PlayerItem : Item, IDropHandler
     {
         if (eventData.pointerDrag.GetComponent<PlayerItem>())
         {
-            print("drop on other item");
+            //print("drop on other item");
             PlayerItem itemDropped = eventData.pointerDrag.GetComponent<PlayerItem>();
             if (itemDropped.weaponData.GetOriginalName() == weaponData.GetOriginalName())
             {

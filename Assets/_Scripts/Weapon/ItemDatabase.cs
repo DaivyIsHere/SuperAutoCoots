@@ -8,7 +8,7 @@ public class ItemDatabase : ScriptableObject
     public Dictionary<string, WeaponData> weaponDic = new Dictionary<string, WeaponData>();
     public Dictionary<string, UpgradeData> upgradeDic = new Dictionary<string, UpgradeData>();
 
-    private void OnValidate() 
+    private void OnEnable() 
     {
         weaponDic.Clear();
         WeaponData[] allWeaponData = Resources.LoadAll<WeaponData>("_SO/WeaponData");

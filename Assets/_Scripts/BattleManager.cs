@@ -19,22 +19,30 @@ public class BattleManager : Singleton<BattleManager>
     {
         SetUpPlayerTeam();//Left
         SetUpEnemyTeam();//Right
+        //TestBattle();
 
-        //Save Player Team to StageData
         //? Disable On Webgl and just paste the component data to it, and hit build.
+        //Save Player Team to StageData
         //StageManager.instance.CollectPlayerTeamData();//We collect here because we dont want to fight ourself
-        
+
+    }
+
+    private void Update()
+    {
+        // if (Input.GetKeyDown(KeyCode.N))
+        //     SceneManager.LoadScene("GameOver");
     }
 
     public void TestBattle()
     {
-        leftUnit.allWeapons.Add(new TeamWeaponData("Knife", 0).GetWeaponDataNewInstance());
+        leftUnit.allWeapons.Add(new TeamWeaponData("Fist", 0).GetWeaponDataNewInstance());
+        leftUnit.allWeapons.Add(new TeamWeaponData("Dagger", 1).GetWeaponDataNewInstance());
         leftUnit.allWeapons.Add(new TeamWeaponData("Spear", 1).GetWeaponDataNewInstance());
         leftUnit.currentWeapon = leftUnit.allWeapons[0];
         leftUnit.unitWeaponDisplay.IniAllWeapons();
 
-        rightUnit.allWeapons.Add(new TeamWeaponData("Spear", 0).GetWeaponDataNewInstance());
-        rightUnit.allWeapons.Add(new TeamWeaponData("Knife", 1).GetWeaponDataNewInstance());
+        rightUnit.allWeapons.Add(new TeamWeaponData("Shield", 0).GetWeaponDataNewInstance());
+        rightUnit.allWeapons.Add(new TeamWeaponData("Fist", 1).GetWeaponDataNewInstance());
         rightUnit.currentWeapon = rightUnit.allWeapons[0];
         rightUnit.unitWeaponDisplay.IniAllWeapons();
     }
@@ -90,13 +98,13 @@ public class BattleManager : Singleton<BattleManager>
         if (side == BattleSide.Left)
         {
             //player lose
-            Debug.LogWarning("YOU LOSE!!");
+            //Debug.LogWarning("YOU LOSE!!");
             PlayerDataManager.instance.lives -= 1;
         }
         else if (side == BattleSide.Right)
         {
             //player win
-            Debug.LogWarning("YOU WIN!!");
+            //Debug.LogWarning("YOU WIN!!");
         }
 
         StartCoroutine(EndBattleAnimation(side));
@@ -111,14 +119,23 @@ public class BattleManager : Singleton<BattleManager>
             Popup.instance.DisplayMsg("YOU WIN", 1, 2);
         yield return new WaitForSeconds(2.5f);
 
+
         if (PlayerDataManager.instance.lives <= 0)
         {
             BlackFade.instance.FadeTransition(() => SceneManager.LoadScene("GameOver"));
         }
         else
         {
-            PlayerDataManager.instance.stage += 1;
-            BlackFade.instance.FadeTransition(() => SceneManager.LoadScene("TeamBuilding"));
+            if (PlayerDataManager.instance.stage >= 10)
+            {
+                PlayerDataManager.instance.stage += 1;
+                BlackFade.instance.FadeTransition(() => SceneManager.LoadScene("GameOver"));
+            }
+            else
+            {
+                PlayerDataManager.instance.stage += 1;
+                BlackFade.instance.FadeTransition(() => SceneManager.LoadScene("TeamBuilding"));
+            }
         }
 
         yield return 0;

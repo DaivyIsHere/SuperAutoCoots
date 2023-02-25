@@ -42,7 +42,7 @@ public class PlayerItemSlot : ItemSlot, IDropHandler
             if (eventData.pointerDrag.GetComponent<PlayerItem>().slot == this)
                 return;
             PlayerItem itemDropped = eventData.pointerDrag.GetComponent<PlayerItem>();
-            print("drop on slot");
+            //print("drop on slot");
             //print("itemDropped : "+ itemDropped.weaponData.name);
             itemDropped.SwapSlotWithItem((PlayerItemSlot)itemDropped.slot, this);
             // if(item)

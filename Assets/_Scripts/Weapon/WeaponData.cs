@@ -26,9 +26,9 @@ public class WeaponData : ScriptableObject
     [GUIColor(1, 0.6f, 0.4f)][LabelText("SPEED")][HorizontalGroup("Basic Stats", LabelWidth = 20)] public List<float> LVmovementVelocity = new List<float>() { 10f, 10f, 10f };//magnitude
     [GUIColor(0.3f, 0.8f, 0.8f, 1f)][LabelText("KBForce")][HorizontalGroup("Knockback", LabelWidth = 20)][Range(1f, 3f)] public List<float> LVknockbackMult = new List<float>() { 1, 1, 1 };//velocity.magnitude multiply by this
     [GUIColor(0.3f, 0.8f, 0.8f, 1f)][LabelText("KBResis")][HorizontalGroup("Knockback", LabelWidth = 20)][Range(0f, 1f)] public List<float> LVknockBackResis = new List<float>() { 0, 0, 0 };
-    [LabelText("Turn")][HorizontalGroup("Info", LabelWidth = 20)]public List<int> LVuseTurn = new List<int>() { 2, 2, 2 };//how many turns before switching to the next weapon
-    [LabelText("Size")][HorizontalGroup("Info", LabelWidth = 20)]public List<float> LVsize = new List<float>() { 1, 1, 1 };
-    [LabelText("BackStab")]public List<float> LVbackStabDamageMult = new List<float>() { 1, 1, 1 };
+    [LabelText("Turn")][HorizontalGroup("Info", LabelWidth = 20)] public List<int> LVuseTurn = new List<int>() { 2, 2, 2 };//how many turns before switching to the next weapon
+    [LabelText("Size")][HorizontalGroup("Info", LabelWidth = 20)] public List<float> LVsize = new List<float>() { 1, 1, 1 };
+    [LabelText("BackStab")] public List<float> LVbackStabDamageMult = new List<float>() { 1, 1, 1 };
     public List<float> LVprojectileLifeTime = new List<float>() { 1, 1, 1 };
     public bool projectilePenetrate = true;
 
@@ -38,6 +38,8 @@ public class WeaponData : ScriptableObject
     public Vector2 spawnOffset;
     public float spawnRotZ;
     public Vector2 spawnVelocity;
+    public float spawnScale = 1;
+    public bool pflipX = false;
     public bool worldSpaceSpawn = false;//spawn as unit's child or not
 
     [Header("Dynamic")]
@@ -124,12 +126,22 @@ public class WeaponData : ScriptableObject
         if (!worldSpaceSpawn)
         {
             projectile.transform.parent = unit.transform;
-            projectile.transform.eulerAngles = new Vector3(0,0,spawnRotZ);
+            if (unitFacing == 1)//Face right
+            {
+                projectile.transform.eulerAngles = new Vector3(0, 0, spawnRotZ);
+                projectile.sprite.flipX = pflipX ? true : false;
+            }
+            else//Face Left
+            {
+                projectile.transform.eulerAngles = new Vector3(0, 0, -spawnRotZ);
+                projectile.sprite.flipX = pflipX ? false : true;
+            }
+
             projectile.rb2d.isKinematic = true;
         }
         else
         {
-            projectile.transform.eulerAngles = new Vector3(0,unitFacing == 1 ? 0 : 180,spawnRotZ);
+            projectile.transform.eulerAngles = new Vector3(0, unitFacing == 1 ? 0 : 180, spawnRotZ);
             projectile.rb2d.isKinematic = false;
         }
 
@@ -143,8 +155,9 @@ public class WeaponData : ScriptableObject
         projectile.projectileData.backStabDamageMult = backStabDamageMult;
         projectile.projectileData.penetrate = projectilePenetrate;
         projectile.projectileData.defaultLifeTime = defaultLifeTime;
-        
+
         projectile.sprite.sprite = projectileSpriteOverride ? projectileSpriteOverride : weaponSprite;
+        projectile.sprite.transform.localScale = Vector3.one * spawnScale;
     }
 
 }

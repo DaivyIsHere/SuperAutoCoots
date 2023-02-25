@@ -44,9 +44,11 @@ MonoBehaviour:
   projectilePenetrate: 1
   projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
   projectileSpriteOverride: {fileID: 0}
-  spawnOffset: {x: 0, y: 0}
-  spawnRotZ: 0
+  spawnOffset: {x: 0.6, y: -0.2}
+  spawnRotZ: 110
   spawnVelocity: {x: 0, y: 0}
+  spawnScale: 1
+  pflipX: 0
   worldSpaceSpawn: 0
   durability: 3
   totalExp: 0
