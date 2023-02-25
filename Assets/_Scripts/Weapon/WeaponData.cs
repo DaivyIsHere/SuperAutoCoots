@@ -36,6 +36,8 @@ public class WeaponData : ScriptableObject
     public List<float> LVupthrowForce = new List<float>() { 5, 5, 5 };
     public List<float> LVjumpVelocity = new List<float>() { 0, 0, 0 };
     public bool projectilePenetrate = true;
+    public bool teleportInstead = false;
+    public bool hasRowAttack = false;
 
     [Header("Projectile")]
     public ProjectileData projectileData;
@@ -107,7 +109,10 @@ public class WeaponData : ScriptableObject
 
     public void PerformAttack(UnitController unit)
     {
-        AttckMovement(unit);
+        if (teleportInstead)
+            Teleport(unit);
+        else
+            AttckMovement(unit);
         SpawnProjectile(unit);
     }
 
@@ -120,6 +125,21 @@ public class WeaponData : ScriptableObject
         //unit.rb2d.AddForce(new Vector2(positionDiff.x, 0) * movementVelocity, ForceMode2D.Impulse);
         unit.rb2d.velocity = (new Vector2(positionDiff.x, 0) * movementVelocity) + new Vector2(0, jumpVelocity);
         unit.FaceTowards(positionDiff.x);
+    }
+
+    public void Teleport(UnitController unit)
+    {
+        if (!BattleManager.instance.GetOpponentUnit(unit.side))
+            return;
+        Vector2 positionDiff = (BattleManager.instance.GetOpponentUnit(unit.side).transform.position - unit.transform.position).normalized;
+        unit.FaceTowards(-positionDiff.x);
+        unit.rb2d.MovePosition(BattleManager.instance.GetOpponentUnit(unit.side).transform.position + (unit.transform.right * -0.8f) + new Vector3(0, 0.75f, 0));
+        unit.rb2d.velocity = (new Vector2(-positionDiff.x * 0.1f, 0));
+    }
+
+    public void RowAttack(UnitController unit)
+    {
+        
     }
 
     public virtual void SpawnProjectile(UnitController unit)

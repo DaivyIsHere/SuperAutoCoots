@@ -35,7 +35,7 @@ public class BattleManager : Singleton<BattleManager>
 
     public void TestBattle()
     {
-        leftUnit.allWeapons.Add(new TeamWeaponData("Fish", 0).GetWeaponDataNewInstance());
+        leftUnit.allWeapons.Add(new TeamWeaponData("Strange Note", 0).GetWeaponDataNewInstance());
         leftUnit.allWeapons.Add(new TeamWeaponData("Lopunny's Costume", 0).GetWeaponDataNewInstance());
         leftUnit.allWeapons.Add(new TeamWeaponData("King's Boot", 1).GetWeaponDataNewInstance());
         leftUnit.allWeapons.Add(new TeamWeaponData("Magicbook but you can't read", 1).GetWeaponDataNewInstance());
@@ -96,17 +96,17 @@ public class BattleManager : Singleton<BattleManager>
         isRunning = false;
         //Debug.LogWarning("GAME OVER!!");
 
-        if (side == BattleSide.Left)
-        {
-            //player lose
-            //Debug.LogWarning("YOU LOSE!!");
-            PlayerDataManager.instance.lives -= 1;
-        }
-        else if (side == BattleSide.Right)
-        {
-            //player win
-            //Debug.LogWarning("YOU WIN!!");
-        }
+        // if (side == BattleSide.Left)
+        // {
+        //     //player lose
+        //     //Debug.LogWarning("YOU LOSE!!");
+        //     PlayerDataManager.instance.lives -= 1;
+        // }
+        // else if (side == BattleSide.Right)
+        // {
+        //     //player win
+        //     //Debug.LogWarning("YOU WIN!!");
+        // }
 
         StartCoroutine(EndBattleAnimation(side));
     }
@@ -115,26 +115,29 @@ public class BattleManager : Singleton<BattleManager>
     {
         yield return new WaitForSeconds(1f);
         if (side == BattleSide.Left)
+        {
             Popup.instance.DisplayMsg("YOU LOSE", 1, 2);
-        else if (side == BattleSide.Right)
-            Popup.instance.DisplayMsg("YOU WIN", 1, 2);
-        yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(2.5f);
 
-
-        if (PlayerDataManager.instance.lives <= 0)
-        {
-            BlackFade.instance.FadeTransition(() => SceneManager.LoadScene("GameOver"));
-        }
-        else
-        {
-            if (PlayerDataManager.instance.stage >= 10)
+            //Lives
+            PlayerDataManager.instance.lives -= 1;
+            if (PlayerDataManager.instance.lives <= 0)
             {
-                PlayerDataManager.instance.stage += 1;
+                BlackFade.instance.FadeTransition(() => SceneManager.LoadScene("GameOver"));
+            }
+        }
+        else if (side == BattleSide.Right)
+        {
+            Popup.instance.DisplayMsg("YOU WIN", 1, 2);
+            yield return new WaitForSeconds(2.5f);
+
+            PlayerDataManager.instance.stage += 1;
+            if (PlayerDataManager.instance.stage > 10)
+            {
                 BlackFade.instance.FadeTransition(() => SceneManager.LoadScene("GameOver"));
             }
             else
             {
-                PlayerDataManager.instance.stage += 1;
                 BlackFade.instance.FadeTransition(() => SceneManager.LoadScene("TeamBuilding"));
             }
         }
