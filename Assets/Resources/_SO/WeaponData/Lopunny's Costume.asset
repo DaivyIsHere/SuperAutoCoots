@@ -15,12 +15,12 @@ MonoBehaviour:
   weaponSprite: {fileID: 274550435, guid: 78ff80db6570ee74e8c8934fe4d85a33, type: 3}
   description: Why do we fight? The world needs peace. I'm wearing this lopunny cosume
     to cure this world. You can't stop me.
-  LVdamage: 000000000000000000000000
+  LVdamage: 010000000100000001000000
   LVmaxDurability: 030000000300000003000000
   LVmovementVelocity:
   - -3
-  - -3
-  - -3
+  - -7
+  - -10
   LVknockbackMult:
   - 1
   - 1
@@ -51,6 +51,10 @@ MonoBehaviour:
   - 6
   - 6
   projectilePenetrate: 1
+  teleportInstead: 0
+  rowAttack: 0
+  rowAimAtOpponent: 0
+  appearStage: 3
   projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
   projectileSpriteOverride: {fileID: 0}
   spawnOffset: {x: 0.2, y: 0.6}
@@ -59,6 +63,9 @@ MonoBehaviour:
   spawnScale: 1.2
   pflipX: 0
   worldSpaceSpawn: 0
+  effectByGravity: 0
+  bounceOnGround: 0
+  bounceMat: {fileID: 0}
   durability: 3
   totalExp: 0
   additionalDamage: 0

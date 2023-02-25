@@ -31,7 +31,7 @@ public class TurnChanger : MonoBehaviour
         PunchAnimation(leftBar);
 
         StartCoroutine(TurnChange());
-        DisplayTurnChange();
+        //DisplayTurnChange();
     }
 
     private IEnumerator TurnChange()
@@ -45,15 +45,21 @@ public class TurnChanger : MonoBehaviour
 
     private void DisplayTurnChange()
     {
-        indicator.DOLocalMoveX(moveDistance, turnInterval).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo).SetLink(indicator.gameObject);
+        //indicator.DOLocalMoveX(moveDistance, turnInterval).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo).SetLink(indicator.gameObject).SetUpdate(true);
     }
 
     private void BarPunches(BattleSide currentSide)
     {
         if (currentSide == BattleSide.Left)
+        {
+            indicator.DOLocalMoveX(moveDistance, turnInterval).SetEase(Ease.Linear).SetLink(indicator.gameObject);
             PunchAnimation(leftBar);//leftBar.DOPunchScale(Vector2.one * 0.5f, 0.5f, 5);
+        }
         else
+        {
+            indicator.DOLocalMoveX(-moveDistance, turnInterval).SetEase(Ease.Linear).SetLink(indicator.gameObject);
             PunchAnimation(rightBar);//rightBar.DOPunchScale(Vector2.one * 0.5f, 0.5f, 5);
+        }
     }
 
     private void PunchAnimation(Transform target)

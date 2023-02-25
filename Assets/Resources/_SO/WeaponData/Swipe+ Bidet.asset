@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3601d7380d0ef8a4381b353b775c1fa0, type: 3}
+  m_Name: Swipe+ Bidet
+  m_EditorClassIdentifier: 
+  weaponSprite: {fileID: 773163727, guid: 78ff80db6570ee74e8c8934fe4d85a33, type: 3}
+  description: "The greatest bidet ever crafted by man. If you have never used a
+    bidet consider this a wake up call.\r\n\r\nIt\u2019s time to join the rest of
+    society"
+  LVdamage: 010000000200000003000000
+  LVmaxDurability: 050000000500000005000000
+  LVmovementVelocity:
+  - 5
+  - 5
+  - 5
+  LVknockbackMult:
+  - 2
+  - 2
+  - 2
+  LVknockBackResis:
+  - 0
+  - 0
+  - 0
+  LVuseTurn: 010000000200000003000000
+  LVsize:
+  - 1
+  - 1
+  - 1
+  LVbackStabDamageMult:
+  - 1
+  - 1
+  - 1
+  LVprojectileLifeTime:
+  - 3
+  - 3
+  - 3
+  LVupthrowForce:
+  - 5
+  - 5
+  - 5
+  LVjumpVelocity:
+  - 0
+  - 0
+  - 0
+  projectilePenetrate: 1
+  teleportInstead: 0
+  rowAttack: 1
+  rowAimAtOpponent: 1
+  appearStage: 6
+  projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
+  projectileSpriteOverride: {fileID: -820222193, guid: 78ff80db6570ee74e8c8934fe4d85a33, type: 3}
+  spawnOffset: {x: 0, y: 0}
+  spawnRotZ: 90
+  spawnVelocity: {x: 10, y: 0}
+  spawnScale: 2
+  pflipX: 1
+  worldSpaceSpawn: 1
+  effectByGravity: 0
+  bounceOnGround: 0
+  bounceMat: {fileID: 0}
+  durability: 5
+  totalExp: 0
+  additionalDamage: 0
+  additionalDurability: 0
+  additionalVelocity: 0

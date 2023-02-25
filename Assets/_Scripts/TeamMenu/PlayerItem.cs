@@ -78,6 +78,9 @@ public class PlayerItem : Item, IDropHandler
             targetItem.SnapBackToSlot();
             selfItem.SnapBackToSlot();
         }
+
+        if(AudioManager.instance)
+            AudioManager.instance.PlayItem();
     }
 
     public void MergeItem(Item mergeItem)
@@ -95,6 +98,9 @@ public class PlayerItem : Item, IDropHandler
         }
         Destroy(mergeItem.gameObject);
         UpdateStatsDisplay();
+
+        if(AudioManager.instance)
+            AudioManager.instance.PlayItem();
     }
 
     public void UpgradeItem(UpgradeItem upgradeItem)
@@ -104,6 +110,9 @@ public class PlayerItem : Item, IDropHandler
         weaponData.additionalVelocity += upgradeItem.upgradeData.bonusVelocity;
         Destroy(upgradeItem.gameObject);
         UpdateStatsDisplay();
+
+        if(AudioManager.instance)
+            AudioManager.instance.PlayItem();
     }
 
 }

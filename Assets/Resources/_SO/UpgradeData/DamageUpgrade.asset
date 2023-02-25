@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f98e0afd073a649b72a485d6944a36, type: 3}
   m_Name: DamageUpgrade
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 7e1aff9652c0dac418d9aa42f5f24dc2, type: 3}
+  sprite: {fileID: -2055033000, guid: b25b71b44fdc43f47b041e2cd56da993, type: 3}
   description: Give +1 damage <br>to a weapon
   bonusDamage: 1
   bonusDurability: 0

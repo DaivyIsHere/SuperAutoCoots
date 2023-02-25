@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponSprite: {fileID: 507337626, guid: 78ff80db6570ee74e8c8934fe4d85a33, type: 3}
   description: '"Dad, can I be as strong as Ryu if I wear his headband?" <br>Dad
     : "Shor yu ken."'
-  LVdamage: 010000000100000001000000
+  LVdamage: 020000000200000002000000
   LVmaxDurability: 030000000300000003000000
   LVmovementVelocity:
   - 5
@@ -51,6 +51,10 @@ MonoBehaviour:
   - 4
   - 4
   projectilePenetrate: 1
+  teleportInstead: 0
+  rowAttack: 0
+  rowAimAtOpponent: 0
+  appearStage: 3
   projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
   projectileSpriteOverride: {fileID: 1267176903, guid: 78ff80db6570ee74e8c8934fe4d85a33, type: 3}
   spawnOffset: {x: 0.6, y: 0}
@@ -61,6 +65,7 @@ MonoBehaviour:
   worldSpaceSpawn: 0
   effectByGravity: 0
   bounceOnGround: 0
+  bounceMat: {fileID: 0}
   durability: 3
   totalExp: 0
   additionalDamage: 0

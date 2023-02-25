@@ -191,6 +191,9 @@ public class UnitController : MonoBehaviour
 
         ///Face toward the hitter
         FaceTowards(transform.position.x < attacker.transform.position.x ? 1 : -1);
+
+        if(AudioManager.instance)
+            AudioManager.instance.PlayHit();
     }
 
     public void ReceiveKnockback(Vector2 knockbackVector)

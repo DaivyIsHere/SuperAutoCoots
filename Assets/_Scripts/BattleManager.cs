@@ -17,9 +17,9 @@ public class BattleManager : Singleton<BattleManager>
 
     void Start()
     {
-        //SetUpPlayerTeam();//Left
-        //SetUpEnemyTeam();//Right
-        TestBattle();
+        SetUpPlayerTeam();//Left
+        SetUpEnemyTeam();//Right
+        //TestBattle();
 
         //? Disable On Webgl and just paste the component data to it, and hit build.
         //Save Player Team to StageData
@@ -35,14 +35,13 @@ public class BattleManager : Singleton<BattleManager>
 
     public void TestBattle()
     {
-        leftUnit.allWeapons.Add(new TeamWeaponData("Strange Note", 0).GetWeaponDataNewInstance());
         leftUnit.allWeapons.Add(new TeamWeaponData("Lopunny's Costume", 0).GetWeaponDataNewInstance());
-        leftUnit.allWeapons.Add(new TeamWeaponData("King's Boot", 1).GetWeaponDataNewInstance());
+        leftUnit.allWeapons.Add(new TeamWeaponData("Shuriken", 0).GetWeaponDataNewInstance());
         leftUnit.allWeapons.Add(new TeamWeaponData("Magicbook but you can't read", 1).GetWeaponDataNewInstance());
         leftUnit.currentWeapon = leftUnit.allWeapons[0];
         leftUnit.unitWeaponDisplay.IniAllWeapons();
 
-        rightUnit.allWeapons.Add(new TeamWeaponData("Shield", 0).GetWeaponDataNewInstance());
+        rightUnit.allWeapons.Add(new TeamWeaponData("Fish", 0).GetWeaponDataNewInstance());
         rightUnit.allWeapons.Add(new TeamWeaponData("Fist", 1).GetWeaponDataNewInstance());
         rightUnit.currentWeapon = rightUnit.allWeapons[0];
         rightUnit.unitWeaponDisplay.IniAllWeapons();
@@ -116,14 +115,18 @@ public class BattleManager : Singleton<BattleManager>
         yield return new WaitForSeconds(1f);
         if (side == BattleSide.Left)
         {
-            Popup.instance.DisplayMsg("YOU LOSE", 1, 2);
+            PlayerDataManager.instance.lives -= 1;
+            Popup.instance.DisplayMsg("YOU LOSE<br>Lives left : " + (PlayerDataManager.instance.lives), 1, 2);
             yield return new WaitForSeconds(2.5f);
 
             //Lives
-            PlayerDataManager.instance.lives -= 1;
             if (PlayerDataManager.instance.lives <= 0)
             {
                 BlackFade.instance.FadeTransition(() => SceneManager.LoadScene("GameOver"));
+            }
+            else
+            {
+                BlackFade.instance.FadeTransition(() => SceneManager.LoadScene("TeamBuilding"));
             }
         }
         else if (side == BattleSide.Right)

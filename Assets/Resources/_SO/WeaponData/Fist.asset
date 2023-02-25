@@ -51,6 +51,10 @@ MonoBehaviour:
   - 0
   - 0
   projectilePenetrate: 1
+  teleportInstead: 0
+  rowAttack: 0
+  rowAimAtOpponent: 0
+  appearStage: 0
   projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
   projectileSpriteOverride: {fileID: 0}
   spawnOffset: {x: 0.8, y: -0.1}

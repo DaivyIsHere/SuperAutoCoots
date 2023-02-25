@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &67083652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,8 +617,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281353401
-  m_fontColor: {r: 0.7264151, g: 0.26542643, b: 0.18777141, a: 1}
+    rgba: 4281877412
+  m_fontColor: {r: 0.6431373, g: 0.2627451, b: 0.21960786, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2214,7 +2214,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 700, y: 50}
+  m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &853820180
 MonoBehaviour:
@@ -2246,7 +2246,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4408131
-  m_fontColor: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 0}
+  m_fontColor: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4100,40 +4100,333 @@ MonoBehaviour:
     - stage: 1
       allTeamData:
       - weapons:
-        - weaponName: Fist
+        - weaponName: Knife
           totalExp: 0
           additionalDamage: 0
           additionalDurability: 0
           additionalVelocity: 0
           currentSlotIndex: 0
-    - stage: 2
-      allTeamData:
+        - weaponName: Dagger
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+      - weapons:
+        - weaponName: Dagger
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Shield
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+      - weapons:
+        - weaponName: Spear
+          totalExp: 0
+          additionalDamage: 2
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 0
+      - weapons:
+        - weaponName: Spear
+          totalExp: 1
+          additionalDamage: 3
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Spear
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Spear
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+      - weapons:
+        - weaponName: Knife
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+      - weapons:
+        - weaponName: Dagger
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 0
+      - weapons:
+        - weaponName: Dagger
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Dagger
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
       - weapons:
         - weaponName: Spear
           totalExp: 0
           additionalDamage: 0
           additionalDurability: 0
           additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+    - stage: 2
+      allTeamData:
+      - weapons:
+        - weaponName: Knife
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Dagger
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Shield
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 2
+      - weapons:
+        - weaponName: Shield
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Shield
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Spear
+          totalExp: 2
+          additionalDamage: 4
+          additionalDurability: 2
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Spear
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Spear
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+      - weapons:
+        - weaponName: Knife
+          totalExp: 1
+          additionalDamage: 2
+          additionalDurability: 2
+          additionalVelocity: 0
           currentSlotIndex: 0
         - weaponName: Fist
           totalExp: 0
-          additionalDamage: 1
+          additionalDamage: 0
           additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+      - weapons:
+        - weaponName: Knife
+          totalExp: 2
+          additionalDamage: 5
+          additionalDurability: 3
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+      - weapons:
+        - weaponName: Dagger
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+      - weapons:
+        - weaponName: Dagger
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Knife
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
           additionalVelocity: 0
           currentSlotIndex: 1
     - stage: 3
       allTeamData:
       - weapons:
-        - weaponName: Spear
+        - weaponName: Knife
+          totalExp: 1
+          additionalDamage: 2
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Dagger
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Shield
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Lopunny's Costume
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Knife
+          totalExp: 2
+          additionalDamage: 3
+          additionalDurability: 2
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Dagger
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Shield
+          totalExp: 2
+          additionalDamage: 2
+          additionalDurability: 2
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Magicbook but you can't read
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Ryu's Headband
           totalExp: 0
           additionalDamage: 0
           additionalDurability: 0
           additionalVelocity: 0
           currentSlotIndex: 0
+        - weaponName: Magicbook but you can't read
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Fist
+          totalExp: 2
+          additionalDamage: 2
+          additionalDurability: 2
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Spear
+          totalExp: 6
+          additionalDamage: 7
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Magicbook but you can't read
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+      - weapons:
+        - weaponName: Knife
+          totalExp: 5
+          additionalDamage: 8
+          additionalDurability: 6
+          additionalVelocity: 0
+          currentSlotIndex: 0
         - weaponName: Fist
           totalExp: 0
-          additionalDamage: 2
-          additionalDurability: 1
+          additionalDamage: 0
+          additionalDurability: 0
           additionalVelocity: 0
           currentSlotIndex: 1
         - weaponName: Fist
@@ -4142,219 +4435,709 @@ MonoBehaviour:
           additionalDurability: 0
           additionalVelocity: 0
           currentSlotIndex: 2
+      - weapons:
+        - weaponName: Knife
+          totalExp: 5
+          additionalDamage: 8
+          additionalDurability: 6
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Fist
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Lopunny's Costume
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Dagger
+          totalExp: 2
+          additionalDamage: 2
+          additionalDurability: 2
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Knife
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 1
     - stage: 4
       allTeamData:
       - weapons:
-        - weaponName: Spear
-          totalExp: 0
-          additionalDamage: 0
-          additionalDurability: 0
+        - weaponName: Knife
+          totalExp: 2
+          additionalDamage: 3
+          additionalDurability: 2
           additionalVelocity: 0
           currentSlotIndex: 0
-        - weaponName: Fist
-          totalExp: 0
+        - weaponName: Dagger
+          totalExp: 2
           additionalDamage: 2
-          additionalDurability: 1
+          additionalDurability: 2
           additionalVelocity: 0
           currentSlotIndex: 1
-        - weaponName: Fist
+        - weaponName: Shield
+          totalExp: 3
+          additionalDamage: 3
+          additionalDurability: 3
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Magicbook but you can't read
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Ryu's Headband
+          totalExp: 2
+          additionalDamage: 2
+          additionalDurability: 2
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Magicbook but you can't read
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Ryu's Headband
           totalExp: 0
           additionalDamage: 0
           additionalDurability: 0
           additionalVelocity: 0
           currentSlotIndex: 2
-        - weaponName: Shield
-          totalExp: 1
-          additionalDamage: 1
+        - weaponName: Fist
+          totalExp: 2
+          additionalDamage: 2
           additionalDurability: 2
           additionalVelocity: 0
           currentSlotIndex: 3
-    - stage: 5
-      allTeamData:
       - weapons:
         - weaponName: Spear
-          totalExp: 1
-          additionalDamage: 1
-          additionalDurability: 1
+          totalExp: 7
+          additionalDamage: 8
+          additionalDurability: 6
           additionalVelocity: 0
           currentSlotIndex: 0
-        - weaponName: Fist
-          totalExp: 1
-          additionalDamage: 3
+        - weaponName: Magicbook but you can't read
+          totalExp: 2
+          additionalDamage: 2
           additionalDurability: 2
           additionalVelocity: 0
           currentSlotIndex: 1
-        - weaponName: Fist
-          totalExp: 1
-          additionalDamage: 1
-          additionalDurability: 1
-          additionalVelocity: 0
-          currentSlotIndex: 2
-        - weaponName: Shield
-          totalExp: 1
-          additionalDamage: 1
-          additionalDurability: 2
-          additionalVelocity: 0
-          currentSlotIndex: 3
-    - stage: 6
-      allTeamData:
       - weapons:
         - weaponName: Spear
-          totalExp: 2
-          additionalDamage: 3
-          additionalDurability: 2
+          totalExp: 7
+          additionalDamage: 8
+          additionalDurability: 6
           additionalVelocity: 0
           currentSlotIndex: 0
-        - weaponName: Fist
-          totalExp: 2
-          additionalDamage: 4
+        - weaponName: Magicbook but you can't read
+          totalExp: 3
+          additionalDamage: 3
           additionalDurability: 3
           additionalVelocity: 0
           currentSlotIndex: 1
+        - weaponName: Dagger
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Knife
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Knife
+          totalExp: 5
+          additionalDamage: 8
+          additionalDurability: 6
+          additionalVelocity: 0
+          currentSlotIndex: 0
         - weaponName: Fist
           totalExp: 1
           additionalDamage: 1
           additionalDurability: 1
           additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Lopunny's Costume
+          totalExp: 2
+          additionalDamage: 4
+          additionalDurability: 2
+          additionalVelocity: 0
           currentSlotIndex: 2
+    - stage: 5
+      allTeamData:
+      - weapons:
+        - weaponName: Knife
+          totalExp: 2
+          additionalDamage: 3
+          additionalDurability: 2
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Dagger
+          totalExp: 5
+          additionalDamage: 5
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 1
         - weaponName: Shield
+          totalExp: 3
+          additionalDamage: 3
+          additionalDurability: 3
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Magicbook but you can't read
           totalExp: 1
           additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Ryu's Headband
+          totalExp: 3
+          additionalDamage: 3
+          additionalDurability: 3
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: King's Boot
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Ryu's Headband
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Fist
+          totalExp: 2
+          additionalDamage: 2
           additionalDurability: 2
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Ryu's Headband
+          totalExp: 3
+          additionalDamage: 3
+          additionalDurability: 3
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: King's Boot
+          totalExp: 3
+          additionalDamage: 3
+          additionalDurability: 3
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Ryu's Headband
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Fist
+          totalExp: 3
+          additionalDamage: 3
+          additionalDurability: 3
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Spear
+          totalExp: 8
+          additionalDamage: 9
+          additionalDurability: 7
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Magicbook but you can't read
+          totalExp: 4
+          additionalDamage: 4
+          additionalDurability: 4
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Dagger
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Knife
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Knife
+          totalExp: 5
+          additionalDamage: 8
+          additionalDurability: 6
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Fist
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Lopunny's Costume
+          totalExp: 3
+          additionalDamage: 5
+          additionalDurability: 4
+          additionalVelocity: 0
+          currentSlotIndex: 2
+    - stage: 6
+      allTeamData:
+      - weapons:
+        - weaponName: Knife
+          totalExp: 2
+          additionalDamage: 3
+          additionalDurability: 2
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Dagger
+          totalExp: 5
+          additionalDamage: 5
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Shield
+          totalExp: 3
+          additionalDamage: 3
+          additionalDurability: 3
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Magicbook but you can't read
+          totalExp: 4
+          additionalDamage: 4
+          additionalDurability: 4
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Ryu's Headband
+          totalExp: 3
+          additionalDamage: 3
+          additionalDurability: 3
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: King's Boot
+          totalExp: 3
+          additionalDamage: 3
+          additionalDurability: 3
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Ryu's Headband
+          totalExp: 2
+          additionalDamage: 2
+          additionalDurability: 2
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Fist
+          totalExp: 4
+          additionalDamage: 4
+          additionalDurability: 4
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Spear
+          totalExp: 9
+          additionalDamage: 10
+          additionalDurability: 9
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Magicbook but you can't read
+          totalExp: 4
+          additionalDamage: 4
+          additionalDurability: 4
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Fish
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Knife
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
           additionalVelocity: 0
           currentSlotIndex: 3
     - stage: 7
       allTeamData:
       - weapons:
-        - weaponName: Spear
+        - weaponName: Knife
           totalExp: 2
           additionalDamage: 3
-          additionalDurability: 2
+          additionalDurability: 4
           additionalVelocity: 0
           currentSlotIndex: 0
-        - weaponName: Fist
-          totalExp: 2
-          additionalDamage: 5
+        - weaponName: Dagger
+          totalExp: 6
+          additionalDamage: 6
+          additionalDurability: 6
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Shield
+          totalExp: 3
+          additionalDamage: 3
+          additionalDurability: 3
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Magicbook but you can't read
+          totalExp: 4
+          additionalDamage: 4
+          additionalDurability: 4
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Ryu's Headband
+          totalExp: 4
+          additionalDamage: 4
+          additionalDurability: 4
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: King's Boot
+          totalExp: 3
+          additionalDamage: 4
           additionalDurability: 3
           additionalVelocity: 0
           currentSlotIndex: 1
-        - weaponName: Fist
-          totalExp: 1
-          additionalDamage: 1
-          additionalDurability: 1
-          additionalVelocity: 0
-          currentSlotIndex: 2
-        - weaponName: Shield
-          totalExp: 1
-          additionalDamage: 1
+        - weaponName: Ryu's Headband
+          totalExp: 2
+          additionalDamage: 2
           additionalDurability: 2
           additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Fist
+          totalExp: 5
+          additionalDamage: 5
+          additionalDurability: 5
+          additionalVelocity: 0
           currentSlotIndex: 3
-        - weaponName: Shield
+      - weapons:
+        - weaponName: Spear
+          totalExp: 9
+          additionalDamage: 10
+          additionalDurability: 9
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Magicbook but you can't read
+          totalExp: 4
+          additionalDamage: 4
+          additionalDurability: 4
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Fish
           totalExp: 0
           additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Swipe+ Bidet
+          totalExp: 1
+          additionalDamage: 1
           additionalDurability: 1
           additionalVelocity: 0
-          currentSlotIndex: 4
+          currentSlotIndex: 3
     - stage: 8
       allTeamData:
       - weapons:
-        - weaponName: Spear
-          totalExp: 2
-          additionalDamage: 4
-          additionalDurability: 3
-          additionalVelocity: 0
-          currentSlotIndex: 0
-        - weaponName: Fist
-          totalExp: 2
-          additionalDamage: 5
-          additionalDurability: 3
-          additionalVelocity: 0
-          currentSlotIndex: 1
-        - weaponName: Fist
-          totalExp: 1
-          additionalDamage: 1
-          additionalDurability: 1
-          additionalVelocity: 0
-          currentSlotIndex: 2
-        - weaponName: Shield
-          totalExp: 1
-          additionalDamage: 1
-          additionalDurability: 2
-          additionalVelocity: 0
-          currentSlotIndex: 3
-        - weaponName: Shield
-          totalExp: 0
-          additionalDamage: 0
-          additionalDurability: 1
-          additionalVelocity: 0
-          currentSlotIndex: 4
-    - stage: 9
-      allTeamData:
-      - weapons:
-        - weaponName: Spear
-          totalExp: 2
-          additionalDamage: 4
-          additionalDurability: 3
-          additionalVelocity: 0
-          currentSlotIndex: 0
-        - weaponName: Spear
-          totalExp: 0
-          additionalDamage: 0
-          additionalDurability: 0
-          additionalVelocity: 0
-          currentSlotIndex: 1
         - weaponName: Knife
-          totalExp: 0
-          additionalDamage: 0
-          additionalDurability: 0
-          additionalVelocity: 0
-          currentSlotIndex: 2
-        - weaponName: Fist
-          totalExp: 4
-          additionalDamage: 6
-          additionalDurability: 4
-          additionalVelocity: 0
-          currentSlotIndex: 3
-        - weaponName: Shield
-          totalExp: 3
+          totalExp: 2
           additionalDamage: 3
           additionalDurability: 4
           additionalVelocity: 0
-          currentSlotIndex: 4
-    - stage: 10
-      allTeamData:
-      - weapons:
-        - weaponName: Shield
-          totalExp: 5
-          additionalDamage: 5
+          currentSlotIndex: 0
+        - weaponName: Dagger
+          totalExp: 6
+          additionalDamage: 6
           additionalDurability: 6
           additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Shield
+          totalExp: 4
+          additionalDamage: 4
+          additionalDurability: 4
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Magicbook but you can't read
+          totalExp: 4
+          additionalDamage: 4
+          additionalDurability: 4
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Ryu's Headband
+          totalExp: 4
+          additionalDamage: 4
+          additionalDurability: 4
+          additionalVelocity: 0
           currentSlotIndex: 0
-        - weaponName: Knife
-          totalExp: 0
-          additionalDamage: 0
-          additionalDurability: 0
+        - weaponName: King's Boot
+          totalExp: 5
+          additionalDamage: 6
+          additionalDurability: 5
           additionalVelocity: 0
           currentSlotIndex: 1
-        - weaponName: Knife
+        - weaponName: Ryu's Headband
+          totalExp: 2
+          additionalDamage: 2
+          additionalDurability: 2
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Fist
+          totalExp: 5
+          additionalDamage: 5
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Spear
+          totalExp: 10
+          additionalDamage: 11
+          additionalDurability: 10
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Magicbook but you can't read
+          totalExp: 4
+          additionalDamage: 4
+          additionalDurability: 4
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Fish
           totalExp: 0
           additionalDamage: 0
           additionalDurability: 0
           additionalVelocity: 0
           currentSlotIndex: 2
-        - weaponName: Fist
-          totalExp: 4
-          additionalDamage: 6
-          additionalDurability: 4
+        - weaponName: Swipe+ Bidet
+          totalExp: 2
+          additionalDamage: 2
+          additionalDurability: 2
           additionalVelocity: 0
           currentSlotIndex: 3
-        - weaponName: Spear
-          totalExp: 3
-          additionalDamage: 5
+    - stage: 9
+      allTeamData:
+      - weapons:
+        - weaponName: Knife
+          totalExp: 2
+          additionalDamage: 3
           additionalDurability: 4
           additionalVelocity: 0
-          currentSlotIndex: 4
+          currentSlotIndex: 0
+        - weaponName: Dagger
+          totalExp: 7
+          additionalDamage: 7
+          additionalDurability: 7
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Shield
+          totalExp: 5
+          additionalDamage: 5
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Magicbook but you can't read
+          totalExp: 5
+          additionalDamage: 5
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Knife
+          totalExp: 5
+          additionalDamage: 6
+          additionalDurability: 7
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Dagger
+          totalExp: 7
+          additionalDamage: 7
+          additionalDurability: 7
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Shield
+          totalExp: 5
+          additionalDamage: 5
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Magicbook but you can't read
+          totalExp: 5
+          additionalDamage: 5
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Ryu's Headband
+          totalExp: 5
+          additionalDamage: 5
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: King's Boot
+          totalExp: 5
+          additionalDamage: 6
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Ryu's Headband
+          totalExp: 3
+          additionalDamage: 3
+          additionalDurability: 3
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Fist
+          totalExp: 5
+          additionalDamage: 5
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Ryu's Headband
+          totalExp: 5
+          additionalDamage: 5
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: King's Boot
+          totalExp: 5
+          additionalDamage: 6
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Ryu's Headband
+          totalExp: 5
+          additionalDamage: 5
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Fist
+          totalExp: 5
+          additionalDamage: 5
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Spear
+          totalExp: 10
+          additionalDamage: 11
+          additionalDurability: 10
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Magicbook but you can't read
+          totalExp: 4
+          additionalDamage: 4
+          additionalDurability: 4
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Fish
+          totalExp: 0
+          additionalDamage: 0
+          additionalDurability: 0
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Swipe+ Bidet
+          totalExp: 3
+          additionalDamage: 5
+          additionalDurability: 3
+          additionalVelocity: 0
+          currentSlotIndex: 3
+    - stage: 10
+      allTeamData:
+      - weapons:
+        - weaponName: Knife
+          totalExp: 5
+          additionalDamage: 6
+          additionalDurability: 7
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Dagger
+          totalExp: 7
+          additionalDamage: 7
+          additionalDurability: 7
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Shield
+          totalExp: 5
+          additionalDamage: 8
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Magicbook but you can't read
+          totalExp: 5
+          additionalDamage: 5
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Ryu's Headband
+          totalExp: 5
+          additionalDamage: 5
+          additionalDurability: 7
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: King's Boot
+          totalExp: 5
+          additionalDamage: 6
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Ryu's Headband
+          totalExp: 5
+          additionalDamage: 5
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Fist
+          totalExp: 5
+          additionalDamage: 5
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 3
+      - weapons:
+        - weaponName: Spear
+          totalExp: 10
+          additionalDamage: 11
+          additionalDurability: 10
+          additionalVelocity: 0
+          currentSlotIndex: 0
+        - weaponName: Magicbook but you can't read
+          totalExp: 4
+          additionalDamage: 4
+          additionalDurability: 4
+          additionalVelocity: 0
+          currentSlotIndex: 1
+        - weaponName: Fish
+          totalExp: 1
+          additionalDamage: 1
+          additionalDurability: 1
+          additionalVelocity: 0
+          currentSlotIndex: 2
+        - weaponName: Swipe+ Bidet
+          totalExp: 5
+          additionalDamage: 7
+          additionalDurability: 5
+          additionalVelocity: 0
+          currentSlotIndex: 3
   allStageData:
     stageDataList: []
 --- !u!4 &1471504140
@@ -4515,7 +5298,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 700, y: 150}
+  m_SizeDelta: {x: 600, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1474331946
 MonoBehaviour:
@@ -4530,7 +5313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 0}
+  m_Color: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6671,6 +7454,30 @@ PrefabInstance:
     - target: {fileID: 2393835570581719180, guid: 462deb6835e5ea149b27f196dd24b933, type: 3}
       propertyPath: m_Name
       value: OptionMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393835570649206044, guid: 462deb6835e5ea149b27f196dd24b933, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393835570649206044, guid: 462deb6835e5ea149b27f196dd24b933, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393835571584168934, guid: 462deb6835e5ea149b27f196dd24b933, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393835571584168934, guid: 462deb6835e5ea149b27f196dd24b933, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393835571584168934, guid: 462deb6835e5ea149b27f196dd24b933, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632043427951646269, guid: 462deb6835e5ea149b27f196dd24b933, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 462deb6835e5ea149b27f196dd24b933, type: 3}

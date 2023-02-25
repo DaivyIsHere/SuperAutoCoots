@@ -91,7 +91,7 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
         foreach (KeyValuePair<int, string> entry in PlayerDataManager.instance.lockedShopWeapon)
         {
             ShopItem newItem = Instantiate(shopItemPref, shopSlots[entry.Key].transform.position, Quaternion.identity, itemContainer).GetComponent<ShopItem>();
-            newItem.slot =  shopSlots[entry.Key];
+            newItem.slot = shopSlots[entry.Key];
             shopSlots[entry.Key].item = newItem;
             newItem.weaponData = database.weaponDic[entry.Value];
             newItem.isLocked = true;
@@ -100,7 +100,7 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
         foreach (KeyValuePair<int, string> entry in PlayerDataManager.instance.lockedShopUpgrade)
         {
             UpgradeItem newItem = Instantiate(upgradeItemPref, upgradeSlots[entry.Key].transform.position, Quaternion.identity, itemContainer).GetComponent<UpgradeItem>();
-            newItem.slot =  upgradeSlots[entry.Key];
+            newItem.slot = upgradeSlots[entry.Key];
             upgradeSlots[entry.Key].item = newItem;
             newItem.upgradeData = database.upgradeDic[entry.Value];
             newItem.isLocked = true;
@@ -130,6 +130,10 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
 
             //Random weaponData
             int rng = Random.Range(0, allWeapon.Count);
+            while (allWeapon[rng].appearStage > PlayerDataManager.instance.stage)
+            {
+                rng = Random.Range(0, allWeapon.Count);
+            }
             newItem.weaponData = allWeapon[rng];
         }
         foreach (var slot in upgradeSlots)
@@ -175,6 +179,8 @@ public class TeamBuildManager : Singleton<TeamBuildManager>
         if (playerGold >= weaponPrice)
         {
             playerGold -= weaponPrice;
+            if (AudioManager.instance)
+                AudioManager.instance.PlayItem();
             return true;
         }
         return false;

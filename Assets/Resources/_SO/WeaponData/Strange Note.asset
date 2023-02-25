@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponSprite: {fileID: 1308489224, guid: 78ff80db6570ee74e8c8934fe4d85a33, type: 3}
   description: '"Nothing personal, kid"'
-  LVdamage: 000000000000000000000000
+  LVdamage: 010000000100000001000000
   LVmaxDurability: 010000000100000001000000
   LVmovementVelocity:
   - 10
@@ -51,7 +51,9 @@ MonoBehaviour:
   - 0
   projectilePenetrate: 1
   teleportInstead: 1
-  hasRowAttack: 0
+  rowAttack: 0
+  rowAimAtOpponent: 0
+  appearStage: 6
   projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
   projectileSpriteOverride: {fileID: 0}
   spawnOffset: {x: 0.4, y: 0}

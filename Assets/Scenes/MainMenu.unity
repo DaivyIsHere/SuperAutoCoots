@@ -855,6 +855,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b73954e8bc7b45a4c9c4e0214bb92554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemSound: {fileID: 8300000, guid: e36a26c9b0640a74dbe81a9af5fae7d8, type: 3}
+  hitSound: {fileID: 8300000, guid: 52a7919fba6a68a47ae62eb14591824d, type: 3}
+  attackSound: {fileID: 8300000, guid: 8812004213a6c8c4da059a566e5789de, type: 3}
 --- !u!1 &757796921
 GameObject:
   m_ObjectHideFlags: 0

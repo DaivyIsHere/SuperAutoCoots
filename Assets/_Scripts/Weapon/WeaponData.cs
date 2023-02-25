@@ -37,7 +37,10 @@ public class WeaponData : ScriptableObject
     public List<float> LVjumpVelocity = new List<float>() { 0, 0, 0 };
     public bool projectilePenetrate = true;
     public bool teleportInstead = false;
-    public bool hasRowAttack = false;
+    public bool rowAttack = false;
+    public bool rowAimAtOpponent = false;
+
+    public int appearStage = 0;
 
     [Header("Projectile")]
     public ProjectileData projectileData;
@@ -114,6 +117,9 @@ public class WeaponData : ScriptableObject
         else
             AttckMovement(unit);
         SpawnProjectile(unit);
+
+        if(AudioManager.instance)
+            AudioManager.instance.PlayAttack();
     }
 
     public virtual void AttckMovement(UnitController unit)
@@ -137,16 +143,20 @@ public class WeaponData : ScriptableObject
         unit.rb2d.velocity = (new Vector2(-positionDiff.x * 0.1f, 0));
     }
 
-    public void RowAttack(UnitController unit)
-    {
-        
-    }
-
     public virtual void SpawnProjectile(UnitController unit)
     {
         int unitFacing = unit.facing;
         Vector2 spawnPos = (Vector2)unit.transform.position + new Vector2(spawnOffset.x * unitFacing, spawnOffset.y);
+        if (rowAttack)
+        {
+            Vector2 rowPos = unit.unitWeaponDisplay.GetWeaponPositionByIndex(unit.GetCurrentWeaponIndex());
+            spawnPos = rowPos;
+        }
         Vector2 velocity = new Vector2(spawnVelocity.x * unitFacing, spawnVelocity.y);
+        if (rowAimAtOpponent)
+        {
+            velocity = ((Vector2)BattleManager.instance.GetOpponentUnit(unit.side).transform.position - spawnPos).normalized * spawnVelocity.x;
+        }
         GameObject projectilePref = (GameObject)Resources.Load("Prefabs/Projectile");
         ProjectileController projectile = Instantiate(projectilePref, spawnPos, Quaternion.identity).GetComponent<ProjectileController>();
 

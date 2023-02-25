@@ -42,11 +42,19 @@ MonoBehaviour:
   - 1
   - 1
   - 1
+  LVupthrowForce:
+  - 5
+  - 5
+  - 5
   LVjumpVelocity:
   - 5
   - 5
   - 5
   projectilePenetrate: 1
+  teleportInstead: 0
+  rowAttack: 0
+  rowAimAtOpponent: 0
+  appearStage: 3
   projectileData: {fileID: 11400000, guid: c8bd8c87b9a0ba3409d92b0d81d894ae, type: 2}
   projectileSpriteOverride: {fileID: 0}
   spawnOffset: {x: 0.3, y: -0.5}
@@ -55,6 +63,9 @@ MonoBehaviour:
   spawnScale: 1.2
   pflipX: 1
   worldSpaceSpawn: 0
+  effectByGravity: 0
+  bounceOnGround: 0
+  bounceMat: {fileID: 0}
   durability: 4
   totalExp: 0
   additionalDamage: 0
